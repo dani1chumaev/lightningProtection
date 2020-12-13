@@ -20,6 +20,8 @@ private slots:
 
     void on_previousPageBtn_clicked();
 
+    void on_LightningIntensityMap_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
