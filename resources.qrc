@@ -2,4 +2,16 @@
     <qresource prefix="/image">
         <file>image/lightningFrequency.jpg</file>
     </qresource>
+    <qresource prefix="/html">
+        <file>html/P-3.html</file>
+        <file>html/B-1.html</file>
+        <file>html/B-1a.html</file>
+        <file>html/B-1b.html</file>
+        <file>html/B-1g.html</file>
+        <file>html/B-2.html</file>
+        <file>html/B-2a.html</file>
+        <file>html/P-1.html</file>
+        <file>html/P-2.html</file>
+        <file>html/P-2a.html</file>
+    </qresource>
 </RCC>

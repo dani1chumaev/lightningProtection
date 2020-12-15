@@ -22,6 +22,16 @@ private slots:
 
     void on_LightningIntensityMap_clicked();
 
+    void on_toolBox_currentChanged(int index);
+
+    void on_comboBox_3_currentIndexChanged(const QString &arg1);
+
+    void on_lightningStrikesAverageCalcBtn_clicked();
+
+    void on_expectedStrikesNumberCaclBtn_clicked();
+
+    void on_protectionZoneAndProtectionCategoryCalcBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
