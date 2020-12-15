@@ -9,7 +9,7 @@ public:
 
     // [h] полная высота молниеотвода для зоны A (не болше 150 м) м
     double fullHeightA ();
-    // [h] полная высота молниеотвода для зоны A (не болше 150 м) м
+    // [h] полная высота молниеотвода для зоны B (не болше 150 м) м
     double fullHeightB ();
     // [h0] высота защиты для зоны A м
     double protectionZoneHeightA ();
@@ -25,6 +25,7 @@ public:
     double protectionZoneRadiusAtHeigthHxB ();
     // [Rx] радиус зоны защиты на высоте hx м
     double protectionZoneRadiusAtHeigthHx ();
+
 
     /*
      * Входные параметры для одиночного молниеотвода
