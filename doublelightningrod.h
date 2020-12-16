@@ -7,10 +7,10 @@ class doublelightningrod
 public:
     doublelightningrod();
 
-    // [hc, L] вычисление высоты для зоны B
-    double fullHeightB(double hc, double L);
-    // [hc, L] вычисление высоты для зоны А
-    double fullHeightA(double hc, double L);
+    // [hc, rx] вычисление высоты для зоны B
+    double fullHeightB(double hc, double rx);
+    // [hc, rx] вычисление высоты для зоны А
+    double fullHeightA(double hc, double rx);
     // [L] радиус зоны защиты
     double radiusZoneProtection(double L);
 
@@ -18,9 +18,12 @@ public:
      * Входные параметры для одиночного молниеотвода
      *
      * hc - высота здания
+     * rx - радиус зоны защиты
      * L - расстояние между двумя молнеотводами
      *
      */
+
+    double rx {};
     double hc {};
     double L {};
 };

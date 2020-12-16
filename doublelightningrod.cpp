@@ -8,11 +8,11 @@ doublelightningrod::doublelightningrod() {
 /**
  *
  * @param hc
- * @param L
+ * @param rx
  * @return высота молниеотвода зоны защиты А
  */
 
-double doublelightningrod::fullHeightA(double hc, double L) {
+double doublelightningrod::fullHeightA(double hc, double rx) {
     double h1 = -10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) - hc - 459);
     double h2 = 10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) + hc + 459);
     if(h1 < 0){
