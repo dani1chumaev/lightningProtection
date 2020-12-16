@@ -1,11 +1,11 @@
-#ifndef LIGHTNINGPROTECTION_SECONDLIGHTNINGROD_H
-#define LIGHTNINGPROTECTION_SECONDLIGHTNINGROD_H
+#ifndef LIGHTNINGPROTECTION_SINGLECABELROD_H
+#define LIGHTNINGPROTECTION_SINGLECABELROD_H
 
 
-class secondLightningRod
+class singlecabelrod
 {
 public:
-    secondLightningRod();
+    singlecabelrod();
 
     // [hc, rx] вычисление высоты для зоны B
     double fullHeightB(double hx, double rx);
@@ -27,4 +27,4 @@ public:
     double b {};
 };
 
-#endif //LIGHTNINGPROTECTION_SECONDLIGHTNINGROD_H
+#endif //LIGHTNINGPROTECTION_SINGLECABELROD_H

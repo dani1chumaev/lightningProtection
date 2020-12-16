@@ -1,32 +1,20 @@
-#include "secondlightningrod.h"
+#include "doublelightningrod.h"
 #include "cmath"
 
-secondLightningRod::secondLightningRod()
-{
+doublelightningrod::doublelightningrod() {
 
 }
 
 /**
  *
- * @param hx
- * @param rx
- * @return fullHeight B protection
+ * @param hc
+ * @param L
+ * @return высота молниеотвода зоны защиты А
  */
 
-double secondLightningRod::fullHeightB(double hx, double rx) {
-    return (hx + 0.14 * rx)/1.06;
-}
-
-/**
- *
- * @param hx
- * @param rx
- * @return fullHeight A protection
- */
-
-double secondLightningRod::fullHeightA(double hx, double rx) {
-    double h1 = 270 - 2 * sqrt(25 * (729 - 4 * rx) - 158 * hx);
-    double h2 = 2 * (sqrt(25 * (729 - 4 * rx) - 158 * hx) + 135);
+double doublelightningrod::fullHeightA(double hc, double L) {
+    double h1 = -10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) - hc - 459);
+    double h2 = 10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) + hc + 459);
     if(h1 < 0){
         if(h2 > 0){
             if (h2 > hx){
@@ -64,10 +52,21 @@ double secondLightningRod::fullHeightA(double hx, double rx) {
 
 /**
  *
- * @param b
+ * @param hc
+ * @param L
+ * @return высота молниеотвода зоны защиты B
+ */
+double doublelightningrod::fullHeightB(double hc, double L) {
+    return (hc + 0.14 * L) / 1.13;
+}
+
+
+/**
+ *
+ * @param L
  * @return radius zone protection
  */
 
-double secondLightningRod::radiusZoneProtection(double b) {
-    return sqrt(pow(0.5 * b, 2) + pow(0.5 * b, 2));
+double singlecabelrod::radiusZoneProtection(double L) {
+    return sqrt(pow(0.5 * L, 2) + pow(0.5 * L, 2));
 }
