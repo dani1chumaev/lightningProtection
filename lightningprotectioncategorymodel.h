@@ -18,6 +18,8 @@ public:
     };
     Q_ENUM(LightningProtectionCategory)
 
+    static QString getString(LightningProtectionCategory lightningProtectionCategory);
+
 signals:
 
 };

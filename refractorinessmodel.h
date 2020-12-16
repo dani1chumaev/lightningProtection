@@ -18,6 +18,8 @@ public:
     };
     Q_ENUM(Refractoriness)
 
+    static QString getString(Refractoriness refractoriness);
+
 signals:
 
 };

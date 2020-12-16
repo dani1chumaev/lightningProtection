@@ -31,9 +31,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-1465</y>
+             <y>-2335</y>
              <width>876</width>
-             <height>1935</height>
+             <height>2805</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -394,24 +394,57 @@ p, li { white-space: pre-wrap; }
                </item>
                <item>
                 <widget class="QTableWidget" name="lPCategoryAndTypeParamTable">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>200</height>
+                  </size>
+                 </property>
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::NoEditTriggers</set>
+                 </property>
+                 <attribute name="verticalHeaderCascadingSectionResizes">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
                  <row>
                   <property name="text">
                    <string>Значение</string>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
                   </property>
                  </row>
                  <column>
                   <property name="text">
                    <string>Здания и сооружения</string>
                   </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
                  </column>
                  <column>
                   <property name="text">
                    <string>ПЭУ</string>
                   </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
                  </column>
                  <column>
                   <property name="text">
                    <string>Огнестойкость</string>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
                   </property>
                  </column>
                  <column>
@@ -419,12 +452,58 @@ p, li { white-space: pre-wrap; }
                    <string>Ожидаемое количество поражений молнией в
 год</string>
                   </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
                  </column>
                  <column>
                   <property name="text">
                    <string>Местоположение</string>
                   </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
                  </column>
+                 <item row="0" column="0">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
+                 </item>
+                 <item row="0" column="1">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
+                 </item>
+                 <item row="0" column="2">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
+                 </item>
+                 <item row="0" column="3">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
+                 </item>
+                 <item row="0" column="4">
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="textAlignment">
+                   <set>AlignCenter</set>
+                  </property>
+                 </item>
                 </widget>
                </item>
                <item>
@@ -435,6 +514,9 @@ p, li { white-space: pre-wrap; }
                  <property name="editTriggers">
                   <set>QAbstractItemView::NoEditTriggers</set>
                  </property>
+                 <attribute name="verticalHeaderStretchLastSection">
+                  <bool>true</bool>
+                 </attribute>
                  <row>
                   <property name="text">
                    <string>Значение</string>
@@ -453,6 +535,88 @@ p, li { white-space: pre-wrap; }
                 </widget>
                </item>
               </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextBrowser" name="textBrowser_7"/>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_9">
+              <property name="title">
+               <string>GroupBox</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_16">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_18">
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_10">
+                     <property name="title">
+                      <string>GroupBox</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_19">
+                      <item>
+                       <widget class="QRadioButton" name="radioButton_4">
+                        <property name="text">
+                         <string>RadioButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QRadioButton" name="radioButton_3">
+                        <property name="text">
+                         <string>RadioButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_17">
+                   <item>
+                    <widget class="QGroupBox" name="groupBox_11">
+                     <property name="title">
+                      <string>GroupBox</string>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_20">
+                      <item>
+                       <widget class="QRadioButton" name="radioButton">
+                        <property name="text">
+                         <string>RadioButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QRadioButton" name="radioButton_2">
+                        <property name="text">
+                         <string>RadioButton</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QStackedWidget" name="stackedWidget_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>500</height>
+               </size>
+              </property>
+              <widget class="QWidget" name="page_5"/>
+              <widget class="QWidget" name="page_6"/>
              </widget>
             </item>
            </layout>
@@ -476,8 +640,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>107</width>
-             <height>199</height>
+             <width>895</width>
+             <height>410</height>
             </rect>
            </property>
            <attribute name="label">
@@ -667,8 +831,8 @@ p, li { white-space: pre-wrap; }
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>83</width>
-             <height>38</height>
+             <width>895</width>
+             <height>410</height>
             </rect>
            </property>
            <attribute name="label">

@@ -16,6 +16,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void calcZoneType();
+
 private slots:
     void on_nextPageBtn_clicked();
 

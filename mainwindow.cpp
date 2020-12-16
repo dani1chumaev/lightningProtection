@@ -13,6 +13,7 @@
 #include "lightningprotectioncategorymodel.h"
 #include "refractorinessmodel.h"
 #include "zonetypemodel.h"
+#include "locationmodel.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -40,6 +41,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->ligtningFrequencyImage->setScaledContents(true);
 
+
+    ui->lPCategoryAndTypeParamTable->verticalHeader()->setStretchLastSection(true);
+
+//    ui->lPCategoryAndTypeParamTable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
+    //ui->lPCategoryAndTypeParamTable->head
+
+//    ui->lPCategoryAndTypeParamTable.setSi
+//    ui->lPCategoryAndTypeParamTable->setWordWrap(true);
+//    ui->lPCategoryAndTypeParamTable->setTextElideMode(Qt::ElideMiddle);
+//    ui->lPCategoryAndTypeParamTable->resizeRowsToContents();
+
 //    QTableWidgetItem *item = new QTableWidgetItem();
 //    item->setText(QVariant::fromValue(Enums::Test::t).toString());
 
@@ -53,50 +67,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-
-
-//enum LightningProtectionCategory {
-//    I,
-//    II,
-//    III,
-//    IV,
-//    V
-//};
-
-//enum ZoneType {
-//    A,
-//    B
-//};
-
-//enum PUA {
-//    P1,
-//    P2,
-//    P2a,
-//    P3,
-//    B1,
-//    B1a,
-//    B1b,
-//    B1g,
-//    B2,
-//    B2a
-//};
-
-//enum Refractoriness {
-//    R1,
-//    R2,
-//    R3,
-//    R4,
-//    R5
-//};
-
-//enum BuildingType {
-//    Common,
-//    Open,
-//    Public,
-//    Towering,
-//    TallTower
-//};
-
 int n, lightningIntensity;
 double N;
 
@@ -105,9 +75,10 @@ RefractorinessModel::Refractoriness refractoriness;
 PUAModel::PUA pua;
 ZoneTypeModel::ZoneType zoneType;
 LightningProtectionCategoryModel::LightningProtectionCategory lightningProtectionCategory;
-//BuildingTypeModel::Building buildingType;
-Enums::test test;
-PUAModel::Building buildingType;
+BuildingTypeModel::Building buildingType;
+PUAModel::Building building;
+LocationModel::Location location;
+
 
 MainWindow::~MainWindow()
 {
@@ -211,34 +182,37 @@ void MainWindow::on_refractorinessComboBox_currentIndexChanged(const QString &ar
         refractoriness = RefractorinessModel::V;
     }
 
-     test = Enums::O;
-
 }
 
 void MainWindow::on_buildingTypeComboBox_currentIndexChanged(int index)
 {
     if (index == 0) {
-        buildingType = PUAModel::Building::Common;
+        building = PUAModel::Building::Common;
+        buildingType = BuildingTypeModel::Common;
         ui->objectLengthDoubleSpinBox->setEnabled(true);
         ui->objectWidthDoubleSpinBox->setEnabled(true);
     }
     if (index == 1) {
-        buildingType = PUAModel::Building::Open;
+        building = PUAModel::Building::Open;
+        buildingType = BuildingTypeModel::Open;
         ui->objectLengthDoubleSpinBox->setEnabled(true);
         ui->objectWidthDoubleSpinBox->setEnabled(true);
     }
     if (index == 2) {
-        buildingType = PUAModel::Building::TallTower;
+        building = PUAModel::Building::TallTower;
+        buildingType = BuildingTypeModel::TallTower;
         ui->objectLengthDoubleSpinBox->setEnabled(false);
         ui->objectWidthDoubleSpinBox->setEnabled(false);
     }
     if (index == 3) {
-        buildingType = PUAModel::Building::Towering;
+        building = PUAModel::Building::Towering;
+        buildingType = BuildingTypeModel::Towering;
         ui->objectLengthDoubleSpinBox->setEnabled(true);
         ui->objectWidthDoubleSpinBox->setEnabled(true);
     }
     if (index == 4) {
-        buildingType = PUAModel::Building::Public;
+        building = PUAModel::Building::Public;
+        buildingType = BuildingTypeModel::Public;
         ui->objectLengthDoubleSpinBox->setEnabled(true);
         ui->objectWidthDoubleSpinBox->setEnabled(true);
     }
@@ -256,7 +230,10 @@ void MainWindow::on_lightningStrikesAverageCalcBtn_clicked()
     QLabel *lightningStrikesAverageResult = ui->lightningStrikesAverageResult;
 
 
-    if (lightningIntensity >= 10 && lightningIntensity < 20) {
+    /*if (lightningIntensity > 0 && lightningIntensity < 10) {
+        lightningStrikesAverageResult->setText("0,5");
+        n = 0.5;
+    } else*/ if (lightningIntensity >= 10 && lightningIntensity < 20) {
         lightningStrikesAverageResult->setText("1");
         n = 1;
         lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
@@ -319,31 +296,51 @@ void MainWindow::on_protectionZoneAndProtectionCategoryCalcBtn_clicked()
         return;
     }
 
-    PUAModel::PUA pua = pua;
-//    BuildingTypeModel::Building buildingType = buildingType;
-    RefractorinessModel::Refractoriness refractoriness = refractoriness;
-    PUAModel::Building ff = buildingType;
+    calcZoneType();
 
+    QTableWidgetItem *buildingI = new QTableWidgetItem();
+    QTableWidgetItem *puaI = new QTableWidgetItem();
+    QTableWidgetItem *refractorinessI = new QTableWidgetItem();
+    QTableWidgetItem *lightningIntensityI = new QTableWidgetItem();
+    QTableWidgetItem *locationI = new QTableWidgetItem();
 
-    if (pua == PUAModel::B1 || pua == PUAModel::B2) {
-        zoneType = ZoneTypeModel::A;
-        lightningProtectionCategory = LightningProtectionCategoryModel::I;
+    buildingI->setText(BuildingTypeModel::getString(buildingType));
+    puaI->setText(PUAModel::getString(pua));
+    refractorinessI->setText(RefractorinessModel::getString(refractoriness));
+    lightningIntensityI->setText(QString::number(N));
+    locationI->setText(LocationModel::getString(location));
 
-    }
+    buildingI->setTextAlignment(Qt::AlignCenter);
+    puaI->setTextAlignment(Qt::AlignCenter);
+    refractorinessI->setTextAlignment(Qt::AlignCenter);
+    lightningIntensityI->setTextAlignment(Qt::AlignCenter);
+    locationI->setTextAlignment(Qt::AlignCenter);
 
-    if ((pua == PUAModel::B1a || pua == PUAModel::B1b || pua == PUAModel::B2a)
-        && lightningIntensity >= 10) {
-        if (N > 1) {
-            zoneType = ZoneTypeModel::A;
-        } else {
-            zoneType = ZoneTypeModel::B;
-        }
-        lightningProtectionCategory = LightningProtectionCategoryModel::II;
-    }
+    ui->lPCategoryAndTypeParamTable->setItem(0, 0, buildingI);
+    ui->lPCategoryAndTypeParamTable->setItem(0, 1, puaI);
+    ui->lPCategoryAndTypeParamTable->setItem(0, 2, refractorinessI);
+    ui->lPCategoryAndTypeParamTable->setItem(0, 3, lightningIntensityI);
+    ui->lPCategoryAndTypeParamTable->setItem(0, 4, locationI);
 
+    QTableWidgetItem *zoneTypeI = new QTableWidgetItem();
+    QTableWidgetItem *lightningProtectionCategoryI = new QTableWidgetItem();
+
+    zoneTypeI->setTextAlignment(Qt::AlignCenter);
+    lightningProtectionCategoryI->setTextAlignment(Qt::AlignCenter);
+
+    zoneTypeI->setText(ZoneTypeModel::getString(zoneType));
+    lightningProtectionCategoryI->setText(LightningProtectionCategoryModel::getString(lightningProtectionCategory));
+
+    ui->lPCategoryAndTypeResultTable->setItem(0, 0, zoneTypeI);
+    ui->lPCategoryAndTypeResultTable->setItem(0, 1, lightningProtectionCategoryI);
+
+}
+
+void MainWindow::calcZoneType() {
     if (pua == PUAModel::B1g) {
         zoneType = ZoneTypeModel::B;
         lightningProtectionCategory = LightningProtectionCategoryModel::II;
+        location = LocationModel::Whole;
     }
 
     if (lightningIntensity >= 20 && (refractoriness == RefractorinessModel::III
@@ -351,6 +348,34 @@ void MainWindow::on_protectionZoneAndProtectionCategoryCalcBtn_clicked()
                                      || refractoriness == RefractorinessModel::V)) {
         zoneType = ZoneTypeModel::B;
         lightningProtectionCategory = LightningProtectionCategoryModel::III;
+        location = LocationModel::LightningAverage20;
+    }
+
+    if ((pua == PUAModel::P3) && lightningIntensity >= 20) {
+        zoneType = ZoneTypeModel::B;
+        lightningProtectionCategory = LightningProtectionCategoryModel::III;
+        location = LocationModel::LightningAverage20;
+    }
+
+    if (buildingType == BuildingTypeModel::TallTower && lightningIntensity >= 10) {
+        zoneType = ZoneTypeModel::B;
+        lightningProtectionCategory = LightningProtectionCategoryModel::III;
+        location = LocationModel::LightningAverage10;
+    }
+
+    if (buildingType == BuildingTypeModel::Towering && lightningIntensity >= 20) {
+        zoneType = ZoneTypeModel::B;
+        lightningProtectionCategory = LightningProtectionCategoryModel::III;
+        location = LocationModel::LightningAverage20;
+    }
+
+    if (buildingType == BuildingTypeModel::Public
+        &&  (refractoriness == RefractorinessModel::III
+            || refractoriness == RefractorinessModel::IV
+            || refractoriness == RefractorinessModel::V)) {
+        zoneType = ZoneTypeModel::B;
+        lightningProtectionCategory = LightningProtectionCategoryModel::III;
+        location = LocationModel::Whole;
     }
 
     if ((pua == PUAModel::P1 || pua == PUAModel::P2 || pua == PUAModel::P2a)
@@ -361,40 +386,26 @@ void MainWindow::on_protectionZoneAndProtectionCategoryCalcBtn_clicked()
             zoneType = ZoneTypeModel::B;
         }
         lightningProtectionCategory = LightningProtectionCategoryModel::III;
+        location = LocationModel::LightningAverage20;
     }
 
-    if ((pua == PUAModel::P3) && lightningIntensity >= 20) {
-        zoneType = ZoneTypeModel::B;
-        lightningProtectionCategory = LightningProtectionCategoryModel::III;
+    if ((pua == PUAModel::B1a || pua == PUAModel::B1b || pua == PUAModel::B2a)
+        && lightningIntensity >= 10) {
+        if (N > 1) {
+            zoneType = ZoneTypeModel::A;
+
+        } else {
+            zoneType = ZoneTypeModel::B;
+        }
+        lightningProtectionCategory = LightningProtectionCategoryModel::II;
+        location = LocationModel::LightningAverage10;
     }
 
-    if (buildingType == BuildingTypeModel::TallTower && lightningIntensity >= 10) {
-        zoneType = ZoneTypeModel::B;
-        lightningProtectionCategory = LightningProtectionCategoryModel::III;
+    if (pua == PUAModel::B1 || pua == PUAModel::B2) {
+        zoneType = ZoneTypeModel::A;
+        lightningProtectionCategory = LightningProtectionCategoryModel::I;
+        location = LocationModel::Whole;
     }
-
-    if (buildingType == BuildingTypeModel::Towering && lightningIntensity >= 20) {
-        zoneType = ZoneTypeModel::B;
-        lightningProtectionCategory = LightningProtectionCategoryModel::III;
-    }
-
-    if (buildingType == BuildingTypeModel::Public
-        &&  (refractoriness == RefractorinessModel::III
-            || refractoriness == RefractorinessModel::IV
-            || refractoriness == RefractorinessModel::V)) {
-        zoneType = ZoneTypeModel::B;
-        lightningProtectionCategory = LightningProtectionCategoryModel::III;
-    }
-
-
-
-//    QTableWidgetItem *item = new QTableWidgetItem();
-//    item->setText(QVariant::fromValue(zoneType).toString());
-
-//    ui->lPCategoryAndTypeResultTable->setItem(0, 0, item);
-
-
 }
-
 
 

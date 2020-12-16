@@ -15,6 +15,8 @@ public:
     };
     Q_ENUM(ZoneType)
 
+    static QString getString(ZoneType zoneType);
+
 signals:
 
 };

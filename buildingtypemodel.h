@@ -18,6 +18,8 @@ public:
     };
     Q_ENUM(Building)
 
+    static QString getString(Building building);
+
 signals:
 
 };

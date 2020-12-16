@@ -13,11 +13,11 @@ doublelightningrod::doublelightningrod() {
  */
 
 double doublelightningrod::fullHeightA(double hc, double rx) {
-    double h1 = -10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) - hc - 459);
-    double h2 = 10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) + hc + 459);
+    double h1 = -10.0/17 * (sqrt(pow(hc - 459, 2) - 1156 * rx) - hc - 459);
+    double h2 = 10.0/17 * (sqrt(pow(hc - 459, 2) - 1156 * rx) + hc + 459);
     if(h1 < 0){
         if(h2 > 0){
-            if (h2 > hс){
+            if (h2 > hc){
                 return h2;
             } else {
                 return 0;
@@ -29,14 +29,14 @@ double doublelightningrod::fullHeightA(double hc, double rx) {
         if (h2 < 0) {
             return h1;
         } else {
-            if(h1 < hс) {
-                if (h2 > hс) {
+            if(h1 < hc) {
+                if (h2 > hc) {
                     return h2;
                 } else {
                     return 0;
                 }
             } else{
-                if (h2 < hс) {
+                if (h2 < hc) {
                     return h1;
                 } else {
                     if (h2 > h1){
@@ -67,6 +67,6 @@ double doublelightningrod::fullHeightB(double hc, double L) {
  * @return radius zone protection
  */
 
-double singlecabelrod::radiusZoneProtection(double L) {
+double doublelightningrod::radiusZoneProtection(double L) {
     return sqrt(pow(0.5 * L, 2) + pow(0.5 * L, 2));
 }
