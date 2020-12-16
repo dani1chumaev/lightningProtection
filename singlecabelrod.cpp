@@ -1,7 +1,7 @@
 #include "singlecabelrod.h"
 #include "cmath"
 
-singlecabelrod::singlecabelrod()
+singleCabelRod::singleCabelRod()
 {
 
 }
@@ -13,7 +13,7 @@ singlecabelrod::singlecabelrod()
  * @return fullHeight B protection
  */
 
-double singlecabelrod::fullHeightB(double hx, double rx) {
+double singleCabelRod::fullHeightB(double hx, double rx) {
     return (hx + 1.85 * rx)/1.7;
 }
 
@@ -24,9 +24,9 @@ double singlecabelrod::fullHeightB(double hx, double rx) {
  * @return fullHeight A protection
  */
 
-double singlecabelrod::fullHeightA(double hx, double rx) {
-    double h1 = -10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) - hx - 459);
-    double h2 = 10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) + hx + 459);
+double singleCabelRod::fullHeightA(double hx, double rx) {
+    double h1 = -10.0/17 * (sqrt(pow(hx - 459, 2) - 1156 * rx) - hx - 459);
+    double h2 = 10.0/17 * (sqrt(pow(hx - 459, 2) - 1156 * rx) + hx + 459);
     if(h1 < 0){
         if(h2 > 0){
             if (h2 > hx){
@@ -68,6 +68,6 @@ double singlecabelrod::fullHeightA(double hx, double rx) {
  * @return radius zone protection
  */
 
-double singlecabelrod::radiusZoneProtection(double b) {
+double singleCabelRod::radiusZoneProtection(double b){
     return sqrt(pow(0.5 * b, 2) + pow(0.5 * b, 2));
 }

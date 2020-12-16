@@ -2,10 +2,10 @@
 #define LIGHTNINGPROTECTION_SINGLECABELROD_H
 
 
-class singlecabelrod
+class singleCabelRod
 {
 public:
-    singlecabelrod();
+    singleCabelRod();
 
     // [hc, rx] вычисление высоты для зоны B
     double fullHeightB(double hx, double rx);
