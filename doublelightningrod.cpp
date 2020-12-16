@@ -17,7 +17,7 @@ double doublelightningrod::fullHeightA(double hc, double rx) {
     double h2 = 10.0/17 * (sqrt(pow(b - 459, 2) - 1156 * rx) + hc + 459);
     if(h1 < 0){
         if(h2 > 0){
-            if (h2 > hx){
+            if (h2 > hс){
                 return h2;
             } else {
                 return 0;
@@ -29,14 +29,14 @@ double doublelightningrod::fullHeightA(double hc, double rx) {
         if (h2 < 0) {
             return h1;
         } else {
-            if(h1 < hx) {
-                if (h2 > hx) {
+            if(h1 < hс) {
+                if (h2 > hс) {
                     return h2;
                 } else {
                     return 0;
                 }
             } else{
-                if (h2 < hx) {
+                if (h2 < hс) {
                     return h1;
                 } else {
                     if (h2 > h1){
