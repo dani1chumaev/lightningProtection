@@ -31,9 +31,9 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-1105</y>
+             <y>-1465</y>
              <width>876</width>
-             <height>1575</height>
+             <height>1935</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -62,16 +62,6 @@ p, li { white-space: pre-wrap; }
                  <string>Входные данные</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_9">
-                 <item>
-                  <widget class="QLabel" name="label_4">
-                   <property name="text">
-                    <string>Тип здания</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QComboBox" name="comboBox_2"/>
-                 </item>
                  <item>
                   <widget class="QLabel" name="label_5">
                    <property name="text">
@@ -142,6 +132,48 @@ p, li { white-space: pre-wrap; }
                  <string>Входные данные</string>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_12">
+                 <item>
+                  <widget class="QLabel" name="label_4">
+                   <property name="text">
+                    <string>Тип строения</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="buildingTypeComboBox">
+                   <item>
+                    <property name="text">
+                     <string>Обычные здания и сооружения</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Наружные установки и открытые склады</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Дымовые трубы, водонапорные башни, вышки высотой
+15 м и более</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Здания, возвышающиеся на
+25 м над высотой окружающих зданий в радиусе 400 м,
+отдельно стоящие здания
+высотой более 30 м, удаленные от других зданий более
+чем на 400 м</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Общественные здания (спальные корпуса, клубы,
+детские сады и др.) </string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
                  <item>
                   <widget class="QLabel" name="label_6">
                    <property name="text">
@@ -231,6 +263,13 @@ p, li { white-space: pre-wrap; }
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_11">
                <item>
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>Правила устройства электроустановок (ПУЭ)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QComboBox" name="comboBox_3">
                  <item>
                   <property name="text">
@@ -287,6 +326,53 @@ p, li { white-space: pre-wrap; }
                <item>
                 <widget class="QContextTextEdit" name="PUABrowser"/>
                </item>
+               <item>
+                <widget class="QLabel" name="label_9">
+                 <property name="text">
+                  <string>Степнь огнеупорности</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QComboBox" name="refractorinessComboBox">
+                 <item>
+                  <property name="text">
+                   <string>I</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>II</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>III</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>IV</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>V</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextBrowser" name="refractorinessBrowser">
+                 <property name="html">
+                  <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -307,10 +393,10 @@ p, li { white-space: pre-wrap; }
                 <widget class="QTextBrowser" name="textBrowser_5"/>
                </item>
                <item>
-                <widget class="QTableWidget" name="buildingAndLocationTable">
+                <widget class="QTableWidget" name="lPCategoryAndTypeParamTable">
                  <row>
                   <property name="text">
-                   <string>1</string>
+                   <string>Значение</string>
                   </property>
                  </row>
                  <column>
@@ -320,7 +406,48 @@ p, li { white-space: pre-wrap; }
                  </column>
                  <column>
                   <property name="text">
+                   <string>ПЭУ</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Огнестойкость</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Ожидаемое количество поражений молнией в
+год</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
                    <string>Местоположение</string>
+                  </property>
+                 </column>
+                </widget>
+               </item>
+               <item>
+                <widget class="QTextBrowser" name="textBrowser_6"/>
+               </item>
+               <item>
+                <widget class="QTableWidget" name="lPCategoryAndTypeResultTable">
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::NoEditTriggers</set>
+                 </property>
+                 <row>
+                  <property name="text">
+                   <string>Значение</string>
+                  </property>
+                 </row>
+                 <column>
+                  <property name="text">
+                   <string>Тип зоны защиты</string>
+                  </property>
+                 </column>
+                 <column>
+                  <property name="text">
+                   <string>Категория устройств молниезащиты</string>
                   </property>
                  </column>
                 </widget>
