@@ -6,9 +6,23 @@ secondLightningRod::secondLightningRod()
 
 }
 
+/**
+ *
+ * @param hx
+ * @param rx
+ * @return fullHeight B protection
+ */
+
 double secondLightningRod::fullHeightB(double hx, double rx) {
     return (hx + 0.14 * rx)/1.06;
 }
+
+/**
+ *
+ * @param hx
+ * @param rx
+ * @return fullHeight A protection
+ */
 
 double secondLightningRod::fullHeightA(double hx, double rx) {
     double h1 = 270 - 2 * sqrt(25 * (729 - 4 * rx) - 158 * hx);
@@ -46,10 +60,13 @@ double secondLightningRod::fullHeightA(double hx, double rx) {
             }
         }
     }
-
-
-    return 0;
 }
+
+/**
+ *
+ * @param b
+ * @return radius zone protection
+ */
 
 double secondLightningRod::radiusZoneProtection(double b) {
     return sqrt(pow(0.5 * b, 2) + pow(0.5 * b, 2));
