@@ -7,21 +7,24 @@ class secondLightningRod
 public:
     secondLightningRod();
 
-    // [hc, h] вычисление растояния между молниеотводами
-    double fullHeightB(int hc, int l);
-
+    // [hc, rx] вычисление высоты для зоны B
+    double fullHeightB(double hx, double rx);
+    // [hc, rx] вычисление высоты для зоны А
+    double fullHeightA(double hx, double rx);
+    // [b] вычисление радиуса зоны защиты
+    double radiusZoneProtection(double b);
 
     /*
      * Входные параметры для одиночного молниеотвода
      *
-     * hc - высота зоны защиты на середине расстояния между молниеотводами
-     * l - длина между двумя молниеотводами
+     * hx - высота здания
+     * rx - радиус зоны защиты
+     * b - ширина здания
      *
      */
-    double hc {};
-    double l {};
-
+    double hx {};
+    double rx {};
+    double b {};
 };
-
 
 #endif //LIGHTNINGPROTECTION_SECONDLIGHTNINGROD_H
