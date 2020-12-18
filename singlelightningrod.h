@@ -8,23 +8,22 @@ public:
     singleLightningRod();
 
     // [h] полная высота молниеотвода для зоны A (не болше 150 м) м
-    double fullHeightA ();
+    double fullHeightA (double hx, double Rx);
     // [h] полная высота молниеотвода для зоны B (не болше 150 м) м
-    double fullHeightB ();
+    double fullHeightB (double hx, double Rx);
     // [h0] высота защиты для зоны A м
-    double protectionZoneHeightA ();
+    double protectionZoneHeightA (double h);
     // [h0] высота защиты для зоны B м
-    double protectionZoneHeightB ();
+    double protectionZoneHeightB (double h);
     // [R0] граница защиты для зоны A м
-    double protectionZoneBoundaryA ();
+    double protectionZoneBoundaryA (double h);
     // [R0] граница защиты для зоны B м
-    double protectionZoneBoundaryB ();
+    double protectionZoneBoundaryB (double h);
     // [Rx] радиус зоны защиты на высоте hх для зоны A м
-    double protectionZoneRadiusAtHeigthHxA ();
+    //double protectionZoneRadiusAtHeigthHxA (double h, double hx);
     // [Rx] радиус зоны защиты на высоте hх для зоны B м
-    double protectionZoneRadiusAtHeigthHxB ();
+    //double protectionZoneRadiusAtHeigthHxB (double h, double hx);
     // [Rx] радиус зоны защиты на высоте hx м
-    double protectionZoneRadiusAtHeigthHx ();
 
 
     /*

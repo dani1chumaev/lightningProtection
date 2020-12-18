@@ -1,5 +1,6 @@
 #include "doublelightningrod.h"
 #include "cmath"
+#include "iostream"
 
 doublelightningrod::doublelightningrod() {
 
@@ -13,41 +14,7 @@ doublelightningrod::doublelightningrod() {
  */
 
 double doublelightningrod::fullHeightA(double hc, double rx) {
-    double h1 = -10.0/17 * (sqrt(pow(hc - 459, 2) - 1156 * rx) - hc - 459);
-    double h2 = 10.0/17 * (sqrt(pow(hc - 459, 2) - 1156 * rx) + hc + 459);
-    if(h1 < 0){
-        if(h2 > 0){
-            if (h2 > hc){
-                return h2;
-            } else {
-                return 0;
-            }
-        } else {
-            return 0;
-        }
-    } else {
-        if (h2 < 0) {
-            return h1;
-        } else {
-            if(h1 < hc) {
-                if (h2 > hc) {
-                    return h2;
-                } else {
-                    return 0;
-                }
-            } else{
-                if (h2 < hc) {
-                    return h1;
-                } else {
-                    if (h2 > h1){
-                        return h2;
-                    } else {
-                        return h1;
-                    }
-                }
-            }
-        }
-    }
+    return -10.0/17 * (sqrt(pow(hc - 459, 2) - 1156 * rx) - hc - 459);;
 }
 
 /**
