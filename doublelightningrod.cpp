@@ -8,23 +8,23 @@ doublelightningrod::doublelightningrod() {
 
 /**
  *
- * @param hc
+ * @param hx
  * @param rx
  * @return высота молниеотвода зоны защиты А
  */
 
-double doublelightningrod::fullHeightA(double hc, double rx) {
-    return -10.0/17 * (sqrt(pow(hc - 459, 2) - 1156 * rx) - hc - 459);
+double doublelightningrod::fullHeightA(double hx, double L) {
+    return 1.0/6 * (sqrt(3) * sqrt(40000 * hx + 3 * pow(L, 2) - 13600 * L + 34680000) + 3 * L - 10200);
 }
 
 /**
  *
- * @param hc
+ * @param hx
  * @param L
  * @return высота молниеотвода зоны защиты B
  */
-double doublelightningrod::fullHeightB(double hc, double L) {
-    return (hc + 0.14 * L) / 1.13;
+double doublelightningrod::fullHeightB(double hx, double L) {
+    return (hx + 0.14 * L) / 1.06;
 }
 
 
