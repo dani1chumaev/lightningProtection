@@ -30,19 +30,22 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap *ligtningFrequencyMap = new QPixmap(":/image/image/lightningFrequency.jpg");
 //    ui->ligtningFrequencyImage->setPixmap(*ligtningFrequencyMap);
     ui->ligtningFrequencyImage->setPixmap(ligtningFrequencyMap->scaled(1089, 601, Qt::KeepAspectRatio));
-//    ui->ligtningFrequencyImage->setPixmap(ligtningFrequencyMap->scaled(
-//        ui->centralwidget->width(),
-//            ui->centralwidget->height(),
-//            Qt::KeepAspectRatio));
-
-    ui->lPCategoryAndTypeParamTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->lPCategoryAndTypeResultTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
 
     ui->ligtningFrequencyImage->setScaledContents(true);
 
 
+
+    ui->lPCategoryAndTypeParamTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->lPCategoryAndTypeResultTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
     ui->lPCategoryAndTypeParamTable->verticalHeader()->setStretchLastSection(true);
+
+    ui->label_22->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: orange;padding: 0px 0px 0px 0px;}");
+
+
+    //Initial param
+    ui->PUABrowser->setHtml(Utils::readFile(":/html/html/P-1.html"));
+    ui->refractorinessBrowser->setHtml(Utils::readFile(":/html/html/refractoriness-1.html"));
 
 //    ui->lPCategoryAndTypeParamTable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -157,6 +160,8 @@ void MainWindow::on_comboBox_3_currentIndexChanged(const QString &arg1)
         ui->PUABrowser->setHtml(Utils::readFile(":/html/html/B-2a.html"));
         pua = PUAModel::B2a;
     }
+
+    calcZoneType();
 }
 
 void MainWindow::on_refractorinessComboBox_currentIndexChanged(const QString &arg1)
@@ -181,6 +186,8 @@ void MainWindow::on_refractorinessComboBox_currentIndexChanged(const QString &ar
         ui->refractorinessBrowser->setHtml(Utils::readFile(":/html/html/refractoriness-5.html"));
         refractoriness = RefractorinessModel::V;
     }
+
+    calcZoneType();
 
 }
 
@@ -217,86 +224,12 @@ void MainWindow::on_buildingTypeComboBox_currentIndexChanged(int index)
         ui->objectWidthDoubleSpinBox->setEnabled(true);
     }
 
-
-
-
+    calcExpectedStrikesNumber();
 }
 
+void MainWindow::changeGuiWhileCalcZoneType() {
 
 
-void MainWindow::on_lightningStrikesAverageCalcBtn_clicked()
-{
-    lightningIntensity = ui->lightningIntensitySpinBox->value();
-    QLabel *lightningStrikesAverageResult = ui->lightningStrikesAverageResult;
-
-
-    /*if (lightningIntensity > 0 && lightningIntensity < 10) {
-        lightningStrikesAverageResult->setText("0,5");
-        n = 0.5;
-    } else*/ if (lightningIntensity >= 10 && lightningIntensity < 20) {
-        lightningStrikesAverageResult->setText("1");
-        n = 1;
-        lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
-    } else if (lightningIntensity >= 20 && lightningIntensity < 40) {
-        lightningStrikesAverageResult->setText("3");
-        n = 3;
-        lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
-    } else if (lightningIntensity >= 40 && lightningIntensity < 60) {
-        lightningStrikesAverageResult->setText("6");
-        n = 6;
-        lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
-    } else if (lightningIntensity >= 60 && lightningIntensity < 80) {
-        lightningStrikesAverageResult->setText("9");
-        n = 9;
-        lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
-    } else if (lightningIntensity >= 80) {
-        lightningStrikesAverageResult->setText("12");
-        n = 12;
-        lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
-    } else {
-        lightningStrikesAverageResult->setText("Ошибка");
-        n = NULL;
-        lightningIntensity = NULL;
-        lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
-    }
-}
-
-void MainWindow::on_expectedStrikesNumberCaclBtn_clicked()
-{
-    QLabel *expectedStrikesNumberResult = ui->expectedStrikesNumberResult;
-
-    if (n == NULL) {
-        expectedStrikesNumberResult->setText("Ошибка");
-        expectedStrikesNumberResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
-        return;
-    }
-
-    double L = ui->objectLengthDoubleSpinBox->value();
-    double h = ui->objectHeightDoubleSpinBox->value();
-    double S = ui->objectWidthDoubleSpinBox->value();
-
-    //N = (S + 6h)(L + 6h)n ∙ 10^–6
-
-    if (buildingType == BuildingTypeModel::TallTower) {
-        N = 9 * M_PI * pow(h, 2) * n * pow(10, -6);
-    } else {
-        N = (S + 6 * h) * (L + 6 * h) * n * pow(10, -6);
-    }
-
-    expectedStrikesNumberResult->setText(QString::number(N));
-
-    expectedStrikesNumberResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
-
-}
-
-void MainWindow::on_protectionZoneAndProtectionCategoryCalcBtn_clicked()
-{
-
-    if (lightningIntensity == NULL) {
-        return;
-    }
-
-    calcZoneType();
 
     QTableWidgetItem *buildingI = new QTableWidgetItem();
     QTableWidgetItem *puaI = new QTableWidgetItem();
@@ -333,10 +266,17 @@ void MainWindow::on_protectionZoneAndProtectionCategoryCalcBtn_clicked()
 
     ui->lPCategoryAndTypeResultTable->setItem(0, 0, zoneTypeI);
     ui->lPCategoryAndTypeResultTable->setItem(0, 1, lightningProtectionCategoryI);
-
 }
 
 void MainWindow::calcZoneType() {
+
+    if (lightningIntensity == NULL || N == NULL) {
+        zoneType = ZoneTypeModel::NONE;
+        return;
+    }
+
+    zoneType = ZoneTypeModel::B;
+
     if (pua == PUAModel::B1g) {
         zoneType = ZoneTypeModel::B;
         lightningProtectionCategory = LightningProtectionCategoryModel::II;
@@ -406,6 +346,152 @@ void MainWindow::calcZoneType() {
         lightningProtectionCategory = LightningProtectionCategoryModel::I;
         location = LocationModel::Whole;
     }
+
+    changeGuiWhileCalcZoneType();
 }
 
+void MainWindow::on_singleRadioBtn_clicked()
+{
+    whichLightningRodSelected();
+}
 
+void MainWindow::on_doubleRadioBtn_clicked()
+{
+    whichLightningRodSelected();
+}
+
+void MainWindow::on_rodRadioBtn_clicked()
+{
+    whichLightningRodSelected();
+}
+
+void MainWindow::on_cableRadioBtn_clicked()
+{
+    whichLightningRodSelected();
+//    QFont font("Latin Modern Math");
+//    ui->label_17->setFont(font);
+}
+
+void MainWindow::whichLightningRodSelected() {
+
+    if (zoneType == ZoneTypeModel::NONE) {
+        ui->label_22->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: orange;padding: 0px 0px 0px 0px;}");
+        return;
+    }
+
+    //Выбор типа молниеотвода
+    if (ui->singleRadioBtn->isChecked()) {
+        if (ui->rodRadioBtn->isChecked()) {
+            ui->lightningRodTypeStackedWidget->setCurrentIndex(1);
+        }
+        if (ui->cableRadioBtn->isChecked()) {
+            ui->lightningRodTypeStackedWidget->setCurrentIndex(2);
+        }
+    }
+    if (ui->doubleRadioBtn->isChecked()) {
+        if (ui->rodRadioBtn->isChecked()) {
+            ui->lightningRodTypeStackedWidget->setCurrentIndex(3);
+        }
+        if (ui->cableRadioBtn->isChecked()) {
+            ui->lightningRodTypeStackedWidget->setCurrentIndex(4);
+        }
+    }
+
+    //Выбор зоны молниеотвода
+    if (zoneType == ZoneTypeModel::A) {
+        ui->zoneStackedWidget->setCurrentIndex(0);
+    } else {
+        ui->zoneStackedWidget->setCurrentIndex(1);
+    }
+
+
+}
+
+void MainWindow::calcExpectedStrikesNumber() {
+    QLabel *expectedStrikesNumberResult = ui->expectedStrikesNumberResult;
+
+    double L = ui->objectLengthDoubleSpinBox->value();
+    double h = ui->objectHeightDoubleSpinBox->value();
+    double S = ui->objectWidthDoubleSpinBox->value();
+
+    if ((n == NULL || L == NULL || S == NULL || h == NULL)
+        && (buildingType != BuildingTypeModel::TallTower && h == NULL)) {
+        expectedStrikesNumberResult->setText("Ошибка");
+        expectedStrikesNumberResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
+        return;
+    }
+
+    //N = (S + 6h)(L + 6h)n ∙ 10^–6
+
+    if (buildingType == BuildingTypeModel::TallTower) {
+        N = 9 * M_PI * pow(h, 2) * n * pow(10, -6);
+    } else {
+        N = (S + 6 * h) * (L + 6 * h) * n * pow(10, -6);
+    }
+
+    expectedStrikesNumberResult->setText(QString::number(N));
+
+    expectedStrikesNumberResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
+
+    calcZoneType();
+
+}
+
+void MainWindow::on_objectLengthDoubleSpinBox_valueChanged(double arg1)
+{
+    calcExpectedStrikesNumber();
+}
+
+void MainWindow::on_objectWidthDoubleSpinBox_valueChanged(double arg1)
+{
+    calcExpectedStrikesNumber();
+}
+
+void MainWindow::on_objectHeightDoubleSpinBox_valueChanged(double arg1)
+{
+    calcExpectedStrikesNumber();
+}
+
+void MainWindow::on_distanceFromWallToLightningDoubleSpinBox_valueChanged(double arg1)
+{
+
+}
+
+void MainWindow::on_lightningIntensitySpinBox_valueChanged(int arg1)
+{
+        lightningIntensity = ui->lightningIntensitySpinBox->value();
+        QLabel *lightningStrikesAverageResult = ui->lightningStrikesAverageResult;
+
+
+        /*if (lightningIntensity > 0 && lightningIntensity < 10) {
+            lightningStrikesAverageResult->setText("0,5");
+            n = 0.5;
+        } else*/ if (lightningIntensity >= 10 && lightningIntensity < 20) {
+            lightningStrikesAverageResult->setText("1");
+            n = 1;
+            lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
+        } else if (lightningIntensity >= 20 && lightningIntensity < 40) {
+            lightningStrikesAverageResult->setText("3");
+            n = 3;
+            lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
+        } else if (lightningIntensity >= 40 && lightningIntensity < 60) {
+            lightningStrikesAverageResult->setText("6");
+            n = 6;
+            lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
+        } else if (lightningIntensity >= 60 && lightningIntensity < 80) {
+            lightningStrikesAverageResult->setText("9");
+            n = 9;
+            lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
+        } else if (lightningIntensity >= 80) {
+            lightningStrikesAverageResult->setText("12");
+            n = 12;
+            lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
+        } else {
+            lightningStrikesAverageResult->setText("Ошибка");
+            n = NULL;
+            lightningIntensity = NULL;
+            lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
+        }
+
+        calcExpectedStrikesNumber();
+}

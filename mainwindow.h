@@ -18,6 +18,12 @@ public:
 
     void calcZoneType();
 
+    void changeGuiWhileCalcZoneType();
+
+    void calcExpectedStrikesNumber();
+
+    void whichLightningRodSelected();
+
 private slots:
     void on_nextPageBtn_clicked();
 
@@ -29,15 +35,27 @@ private slots:
 
     void on_comboBox_3_currentIndexChanged(const QString &arg1);
 
-    void on_lightningStrikesAverageCalcBtn_clicked();
-
-    void on_expectedStrikesNumberCaclBtn_clicked();
-
-    void on_protectionZoneAndProtectionCategoryCalcBtn_clicked();
-
     void on_refractorinessComboBox_currentIndexChanged(const QString &arg1);
 
     void on_buildingTypeComboBox_currentIndexChanged(int index);
+
+    void on_singleRadioBtn_clicked();
+
+    void on_doubleRadioBtn_clicked();
+
+    void on_rodRadioBtn_clicked();
+
+    void on_cableRadioBtn_clicked();
+
+    void on_objectLengthDoubleSpinBox_valueChanged(double arg1);
+
+    void on_objectWidthDoubleSpinBox_valueChanged(double arg1);
+
+    void on_objectHeightDoubleSpinBox_valueChanged(double arg1);
+
+    void on_distanceFromWallToLightningDoubleSpinBox_valueChanged(double arg1);
+
+    void on_lightningIntensitySpinBox_valueChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

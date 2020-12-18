@@ -10,6 +10,7 @@ public:
     explicit ZoneTypeModel(QObject *parent = nullptr);
 
     enum ZoneType {
+        NONE,
         A,
         B
     };
