@@ -26,7 +26,9 @@ double singleCabelRod::fullHeightB(double hx, double rx) {
  */
 
 double singleCabelRod::fullHeightA(double hx, double rx) {
-    return -10.0/17 * (sqrt(pow(hx * 100 - 459, 2) - 1156 * rx) - hx * 100 - 459)/100;
+//    return -1/40.0 * sqrt(pow(10800 - 17 * hx, 2) - 640000 * rx) + 17 * hx/40 + 270;
+    return -10.0/17 * (sqrt(pow(hx - 459, 2) - 1156 * rx) - hx - 459);
+//    return -1/50.0 * sqrt(-1000000 * rx + 441 * pow(hx, 2) - 573000 * hx + 182250000) + 21*hx/50 + 270;
 }
 
 /**

@@ -29,13 +29,11 @@ enum Methods {
 };
 
 void singleCabelRod_method(){
-    //TODO посмотреть входные данные и расчетные формулы. Ответы не совпадают
-
     singleCabelRod singleCabel;
 
     double a = 30;
     double b = 30;
-    double hx = 75;
+    double hx = 50;
 
     double rx = 0.5 * sqrt(pow(a, 2) + pow(b, 2));
 
