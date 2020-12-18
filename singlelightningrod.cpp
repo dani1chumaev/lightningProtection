@@ -1,4 +1,4 @@
-#include "singlelightningrod.h"
+    #include "singlelightningrod.h"
 #include "cmath"
 
 singleLightningRod::singleLightningRod()

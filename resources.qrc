@@ -1,6 +1,18 @@
 <RCC>
     <qresource prefix="/image">
         <file>image/lightningFrequency.jpg</file>
+        <file>image/lr_h0_A.png</file>
+        <file>image/lr_h_B.png</file>
+        <file>image/lr_h0_B.png</file>
+        <file>image/lr_R0_A.png</file>
+        <file>image/lr_R0_B.png</file>
+        <file>image/lr_Rx_All.png</file>
+        <file>image/lr_R0_A_Verdana.png</file>
+        <file>image/dlr_h_B.png</file>
+        <file>image/dlr_h_B (1).png</file>
+        <file>image/lc_h_B.png</file>
+        <file>image/lc_h_A.png</file>
+        <file>image/lr_h_A.png</file>
     </qresource>
     <qresource prefix="/html">
         <file>html/P-3.html</file>
@@ -18,5 +30,9 @@
         <file>html/refractoriness-3.html</file>
         <file>html/refractoriness-4.html</file>
         <file>html/refractoriness-5.html</file>
+    </qresource>
+    <qresource prefix="/font">
+        <file>font/lmroman10-italic.otf</file>
+        <file>font/latinmodern-math.otf</file>
     </qresource>
 </RCC>
