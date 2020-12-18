@@ -14,7 +14,7 @@ doublelightningrod::doublelightningrod() {
  */
 
 double doublelightningrod::fullHeightA(double hc, double rx) {
-    return -10.0/17 * (sqrt(pow(hc - 459, 2) - 1156 * rx) - hc - 459);;
+    return -10.0/17 * (sqrt(pow(hc - 459, 2) - 1156 * rx) - hc - 459);
 }
 
 /**
