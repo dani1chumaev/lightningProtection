@@ -37,7 +37,7 @@
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-1855</y>
+             <y>-2109</y>
              <width>1496</width>
              <height>2872</height>
             </rect>
@@ -635,7 +635,7 @@ p, li { white-space: pre-wrap; }
                </size>
               </property>
               <property name="currentIndex">
-               <number>4</number>
+               <number>3</number>
               </property>
               <widget class="QWidget" name="page_5">
                <layout class="QVBoxLayout" name="verticalLayout_24">
@@ -1610,59 +1610,211 @@ p, li { white-space: pre-wrap; }
                      </widget>
                     </item>
                     <item>
-                     <widget class="QGroupBox" name="groupBox_19">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="title">
-                       <string>Рассчётные формулы</string>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_31">
-                       <item>
-                        <widget class="QLabel" name="label_38">
-                         <property name="text">
-                          <string>h ,м – высота молниеотвода</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_37">
-                         <property name="text">
-                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/image/image/dlr_h_B (1).png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QGroupBox" name="groupBox_20">
-                      <property name="title">
-                       <string>Результат</string>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_32">
-                       <item>
-                        <widget class="QLabel" name="label_41">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="font">
-                          <font>
-                           <pointsize>10</pointsize>
-                          </font>
-                         </property>
-                         <property name="text">
-                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h=?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
+                     <widget class="QStackedWidget" name="lConditionStackedDLR">
+                      <widget class="QWidget" name="lLessOrEqH">
+                       <layout class="QVBoxLayout" name="verticalLayout_51">
+                        <item>
+                         <widget class="QGroupBox" name="groupBox_30">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="title">
+                           <string>Рассчётные формулы</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_49">
+                           <item>
+                            <widget class="QLabel" name="label_57">
+                             <property name="text">
+                              <string>h ,м – высота молниеотвода</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_58">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/A/image/dlr/ZoneA/h.png&quot;/&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_8">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_60">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/A/LLessAndEqh/image/dlr/ZoneA/LLessAndEqh/hc.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_9">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_61">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/A/LLessAndEqh/image/dlr/ZoneA/LLessAndEqh/Rc.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_11">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_62">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/A/LLessAndEqh/image/dlr/ZoneA/LLessAndEqh/Rcx.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QGroupBox" name="groupBox_31">
+                          <property name="title">
+                           <string>Результат</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_50">
+                           <item>
+                            <widget class="QLabel" name="label_59">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>10</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h=?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                      <widget class="QWidget" name="hLessLLess6h">
+                       <layout class="QVBoxLayout" name="verticalLayout_48">
+                        <item>
+                         <widget class="QGroupBox" name="groupBox_19">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="title">
+                           <string>Рассчётные формулы</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_31">
+                           <item>
+                            <widget class="QLabel" name="label_38">
+                             <property name="text">
+                              <string>h ,м – высота молниеотвода</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_37">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/A/image/dlr/ZoneA/h.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_12">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_63">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/A/hLessLLess6h/image/dlr/ZoneA/hLessLLess6h/hc.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_13">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_64">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/A/hLessLLess6h/image/dlr/ZoneA/hLessLLess6h/Rc.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="Line" name="line_14">
+                             <property name="orientation">
+                              <enum>Qt::Horizontal</enum>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_65">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/A/hLessLLess6h/image/dlr/ZoneA/hLessLLess6h/Rcx.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QGroupBox" name="groupBox_20">
+                          <property name="title">
+                           <string>Результат</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_32">
+                           <item>
+                            <widget class="QLabel" name="label_41">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>10</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h=?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
                      </widget>
                     </item>
                    </layout>
@@ -1670,88 +1822,118 @@ p, li { white-space: pre-wrap; }
                   <widget class="QWidget" name="zoneB_DLR">
                    <layout class="QVBoxLayout" name="verticalLayout_47">
                     <item>
-                     <widget class="QGroupBox" name="groupBox_27">
-                      <property name="title">
-                       <string>Входные данные</string>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_44">
-                       <item>
-                        <widget class="QLabel" name="label_52">
-                         <property name="text">
-                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt; ,м - Высота зоны защиты на середине расстояния между молниеотводами&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QDoubleSpinBox" name="distanceFromWallToLightningDoubleSpinBox_6"/>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_53">
-                         <property name="text">
-                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;L ,м – расстояние между молниеотводами&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QGroupBox" name="groupBox_28">
-                      <property name="minimumSize">
-                       <size>
-                        <width>0</width>
-                        <height>0</height>
-                       </size>
-                      </property>
-                      <property name="title">
-                       <string>Рассчётные формулы</string>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_45">
-                       <item>
-                        <widget class="QLabel" name="label_54">
-                         <property name="text">
-                          <string>h ,м – высота молниеотвода</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QLabel" name="label_55">
-                         <property name="text">
-                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/image/image/dlr_h_B (1).png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QGroupBox" name="groupBox_29">
-                      <property name="title">
-                       <string>Результат</string>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_46">
-                       <item>
-                        <widget class="QLabel" name="label_56">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="font">
-                          <font>
-                           <pointsize>10</pointsize>
-                          </font>
-                         </property>
-                         <property name="text">
-                          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h=?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
+                     <widget class="QStackedWidget" name="lConditionStackedDLR_B">
+                      <widget class="QWidget" name="page_14">
+                       <layout class="QVBoxLayout" name="verticalLayout_57">
+                        <item>
+                         <widget class="QGroupBox" name="groupBox_27">
+                          <property name="title">
+                           <string>Входные данные</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_44">
+                           <item>
+                            <widget class="QLabel" name="label_52">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h&lt;span style=&quot; vertical-align:sub;&quot;&gt;c&lt;/span&gt; ,м - Высота зоны защиты на середине расстояния между молниеотводами&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QDoubleSpinBox" name="distanceFromWallToLightningDoubleSpinBox_6"/>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_53">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;L ,м – расстояние между молниеотводами&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QGroupBox" name="groupBox_28">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="title">
+                           <string>Рассчётные формулы</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_45">
+                           <item>
+                            <widget class="QLabel" name="label_54">
+                             <property name="text">
+                              <string>h ,м – высота молниеотвода</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_55">
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/dlr/B/image/dlr/ZoneB/h.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_78">
+                             <property name="text">
+                              <string>TextLabel</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_79">
+                             <property name="text">
+                              <string>TextLabel</string>
+                             </property>
+                            </widget>
+                           </item>
+                           <item>
+                            <widget class="QLabel" name="label_80">
+                             <property name="text">
+                              <string>TextLabel</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QGroupBox" name="groupBox_29">
+                          <property name="title">
+                           <string>Результат</string>
+                          </property>
+                          <layout class="QVBoxLayout" name="verticalLayout_46">
+                           <item>
+                            <widget class="QLabel" name="label_56">
+                             <property name="sizePolicy">
+                              <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                               <horstretch>0</horstretch>
+                               <verstretch>0</verstretch>
+                              </sizepolicy>
+                             </property>
+                             <property name="font">
+                              <font>
+                               <pointsize>10</pointsize>
+                              </font>
+                             </property>
+                             <property name="text">
+                              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;h=?&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                             </property>
+                            </widget>
+                           </item>
+                          </layout>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                      <widget class="QWidget" name="page_15"/>
                      </widget>
                     </item>
                    </layout>

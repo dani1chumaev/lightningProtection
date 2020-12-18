@@ -13,6 +13,18 @@
         <file>image/lc_h_B.png</file>
         <file>image/lc_h_A.png</file>
         <file>image/lr_h_A.png</file>
+        <file>image/dlr_hc_hLessLLess6h_A.png</file>
+        <file>image/dlr_hc_hLessLLess6h_B.png</file>
+        <file>image/dlr_hc_LLessOrEqh_A.png</file>
+        <file>image/dlr_hc_LlessOrEqh_B.png</file>
+        <file>image/dlr_Rc_LlessOrEqh_A.png</file>
+        <file>image/dlr_Rc_LlessOrEqh_B.png</file>
+        <file>image/dlr_Rc_R0_LlessOrEqh_A.png</file>
+        <file>image/dlr_Rcx_hlessLLess6h_A.png</file>
+        <file>image/dlr_Rcx_hLessLLess6h_B.png</file>
+        <file>image/dlr_Rcx_LlessOrEqh_B.png</file>
+        <file>image/dlr_Rcx_Rx_LlessOrEqh_A.png</file>
+        <file>image/dlr_h_hLessLLess6h_A.png</file>
     </qresource>
     <qresource prefix="/html">
         <file>html/P-3.html</file>
@@ -34,5 +46,31 @@
     <qresource prefix="/font">
         <file>font/lmroman10-italic.otf</file>
         <file>font/latinmodern-math.otf</file>
+    </qresource>
+    <qresource prefix="/dlr/A">
+        <file>image/dlr/ZoneA/h.png</file>
+    </qresource>
+    <qresource prefix="/dlr/B">
+        <file>image/dlr/ZoneB/h.png</file>
+    </qresource>
+    <qresource prefix="/dlr/A/LLessAndEqh">
+        <file>image/dlr/ZoneA/LLessAndEqh/hc.png</file>
+        <file>image/dlr/ZoneA/LLessAndEqh/Rc.png</file>
+        <file>image/dlr/ZoneA/LLessAndEqh/Rcx.png</file>
+    </qresource>
+    <qresource prefix="/dlr/A/hLessLLess6h">
+        <file>image/dlr/ZoneA/hLessLLess6h/hc.png</file>
+        <file>image/dlr/ZoneA/hLessLLess6h/Rc.png</file>
+        <file>image/dlr/ZoneA/hLessLLess6h/Rcx.png</file>
+    </qresource>
+    <qresource prefix="/dlr/B/LLessAndEqh">
+        <file>image/dlr/ZoneB/LLessAndEqh/hc.png</file>
+        <file>image/dlr/ZoneB/LLessAndEqh/Rc.png</file>
+        <file>image/dlr/ZoneB/LLessAndEqh/Rcx.png</file>
+    </qresource>
+    <qresource prefix="/dlr/B/hLessLLess6h">
+        <file>image/dlr/ZoneB/hLessLLess6h/hc.png</file>
+        <file>image/dlr/ZoneB/hLessLLess6h/Rc.png</file>
+        <file>image/dlr/ZoneB/hLessLLess6h/Rcx.png</file>
     </qresource>
 </RCC>
