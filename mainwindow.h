@@ -16,6 +16,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void calcSLR();
+
+    void calcSLC();
+
     void calcZoneType();
 
     void changeGuiWhileCalcZoneType();

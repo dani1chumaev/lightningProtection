@@ -14,6 +14,7 @@
 #include "refractorinessmodel.h"
 #include "zonetypemodel.h"
 #include "locationmodel.h"
+#include "singlelightningrod.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -73,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
 int n, lightningIntensity;
 double N;
 
-//Enums::BuildingType buildingType;
+
 RefractorinessModel::Refractoriness refractoriness;
 PUAModel::PUA pua;
 ZoneTypeModel::ZoneType zoneType;
@@ -270,7 +271,7 @@ void MainWindow::changeGuiWhileCalcZoneType() {
 
 void MainWindow::calcZoneType() {
 
-    if (lightningIntensity == NULL || N == NULL) {
+    if (lightningIntensity == 0 || N == 0) {
         zoneType = ZoneTypeModel::NONE;
         return;
     }
@@ -348,6 +349,7 @@ void MainWindow::calcZoneType() {
     }
 
     changeGuiWhileCalcZoneType();
+    whichLightningRodSelected();
 }
 
 void MainWindow::on_singleRadioBtn_clicked()
@@ -368,13 +370,12 @@ void MainWindow::on_rodRadioBtn_clicked()
 void MainWindow::on_cableRadioBtn_clicked()
 {
     whichLightningRodSelected();
-//    QFont font("Latin Modern Math");
-//    ui->label_17->setFont(font);
 }
 
 void MainWindow::whichLightningRodSelected() {
 
     if (zoneType == ZoneTypeModel::NONE) {
+        ui->lightningRodTypeStackedWidget->setCurrentIndex(0);
         ui->label_22->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: orange;padding: 0px 0px 0px 0px;}");
         return;
     }
@@ -383,29 +384,110 @@ void MainWindow::whichLightningRodSelected() {
     if (ui->singleRadioBtn->isChecked()) {
         if (ui->rodRadioBtn->isChecked()) {
             ui->lightningRodTypeStackedWidget->setCurrentIndex(1);
+
+            if (zoneType == ZoneTypeModel::A) {
+                ui->zoneStackedWidget->setCurrentIndex(0);
+            } else {
+                ui->zoneStackedWidget->setCurrentIndex(1);
+            }
+
+            calcSLR();
         }
         if (ui->cableRadioBtn->isChecked()) {
             ui->lightningRodTypeStackedWidget->setCurrentIndex(2);
+
+            if (zoneType == ZoneTypeModel::A) {
+                ui->zoneStackedWidgetSLC->setCurrentIndex(0);
+            } else {
+                ui->zoneStackedWidgetSLC->setCurrentIndex(1);
+            }
+
+            calcSLC();
         }
     }
     if (ui->doubleRadioBtn->isChecked()) {
         if (ui->rodRadioBtn->isChecked()) {
             ui->lightningRodTypeStackedWidget->setCurrentIndex(3);
+
+            if (zoneType == ZoneTypeModel::A) {
+                ui->zoneStackedWidgetDLR->setCurrentIndex(0);
+            } else {
+                ui->zoneStackedWidgetDLR->setCurrentIndex(1);
+            }
+
         }
         if (ui->cableRadioBtn->isChecked()) {
             ui->lightningRodTypeStackedWidget->setCurrentIndex(4);
         }
     }
 
-    //Выбор зоны молниеотвода
-    if (zoneType == ZoneTypeModel::A) {
-        ui->zoneStackedWidget->setCurrentIndex(0);
-    } else {
-        ui->zoneStackedWidget->setCurrentIndex(1);
-    }
-
 
 }
+
+
+void MainWindow::calcSLR() {
+
+    double L = ui->objectLengthDoubleSpinBox->value();
+    double l = ui->distanceFromWallToLightningDoubleSpinBox->value();
+    double hx = ui->objectHeightDoubleSpinBox->value();
+    double S = ui->objectWidthDoubleSpinBox->value();
+    double Rx = sqrt(pow(L / 2, 2) + pow(S + l, 2));;
+    singleLightningRod slr;
+
+    double h, h0, R0;
+
+    if (zoneType == ZoneTypeModel::A) {
+        h = slr.fullHeightA(hx, Rx);
+        h0 = slr.protectionZoneHeightA(h);
+        R0 = slr.protectionZoneBoundaryA(h);
+
+        ui->slrhLabelA->setText(QString::number(h));
+        ui->slrh0LabelA->setText(QString::number(h0));
+        ui->slrR0LabelA->setText(QString::number(R0));
+        ui->slrRxLabelA->setText(QString::number(Rx));
+    } else {
+        h = slr.fullHeightB(hx, Rx);
+        h0 = slr.protectionZoneHeightB(h);
+        R0 = slr.protectionZoneBoundaryB(h);
+
+        ui->slrhLabelB->setText(QString::number(h));
+        ui->slrh0LabelB->setText(QString::number(h0));
+        ui->slrR0LabelB->setText(QString::number(R0));
+        ui->slrRxLabelB->setText(QString::number(Rx));
+    }
+}
+
+void MainWindow::calcSLC() {
+
+    double L = ui->objectLengthDoubleSpinBox->value();
+    double l = ui->distanceFromWallToLightningDoubleSpinBox->value();
+    double hx = ui->objectHeightDoubleSpinBox->value();
+    double S = ui->objectWidthDoubleSpinBox->value();
+    double Rx = sqrt(pow(L / 2, 2) + pow(S + l, 2));;
+    singleLightningRod slr;
+
+    double h, h0, R0;
+
+    if (zoneType == ZoneTypeModel::A) {
+        h = slr.fullHeightA(hx, Rx);
+
+        ui->slchLabelA->setText(QString::number(h));
+        ui->slcRxLabelA->setText(QString::number(Rx));
+    } else {
+        h = slr.fullHeightB(hx, Rx);
+
+        QString str1 = ui->slcRxLabelB->text().split("=")[0].append("=").append(QString::number(h));
+        QString str2 = ui->slcRxLabelB->text().split("=")[0];
+        QString str3 = ui->slcRxLabelB->text();
+        QLabel *dffd = new QLabel();
+
+
+
+        ui->slchLabelB->setText(QString::number(h));
+        ui->slcRxLabelB->setText(QString::number(Rx));
+    }
+}
+
 
 void MainWindow::calcExpectedStrikesNumber() {
     QLabel *expectedStrikesNumberResult = ui->expectedStrikesNumberResult;
@@ -414,8 +496,13 @@ void MainWindow::calcExpectedStrikesNumber() {
     double h = ui->objectHeightDoubleSpinBox->value();
     double S = ui->objectWidthDoubleSpinBox->value();
 
-    if ((n == NULL || L == NULL || S == NULL || h == NULL)
-        && (buildingType != BuildingTypeModel::TallTower && h == NULL)) {
+    if ((L == 0 || h == 0 || S == 0) && buildingType != BuildingTypeModel::TallTower) {
+        expectedStrikesNumberResult->setText("Ошибка");
+        expectedStrikesNumberResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
+        return;
+    }
+
+    if (buildingType == BuildingTypeModel::TallTower && h == 0) {
         expectedStrikesNumberResult->setText("Ошибка");
         expectedStrikesNumberResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
         return;

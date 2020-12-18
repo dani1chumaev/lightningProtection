@@ -2,7 +2,6 @@
     <qresource prefix="/image">
         <file>image/lightningFrequency.jpg</file>
         <file>image/lr_h0_A.png</file>
-        <file>image/lr_h_A.png</file>
         <file>image/lr_h_B.png</file>
         <file>image/lr_h0_B.png</file>
         <file>image/lr_R0_A.png</file>
@@ -11,6 +10,9 @@
         <file>image/lr_R0_A_Verdana.png</file>
         <file>image/dlr_h_B.png</file>
         <file>image/dlr_h_B (1).png</file>
+        <file>image/lc_h_B.png</file>
+        <file>image/lc_h_A.png</file>
+        <file>image/lr_h_A.png</file>
     </qresource>
     <qresource prefix="/html">
         <file>html/P-3.html</file>
