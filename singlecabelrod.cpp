@@ -40,3 +40,27 @@ double singleCabelRod::fullHeightA(double hx, double rx) {
 double singleCabelRod::radiusZoneProtection(double b){
     return sqrt(pow(0.5 * b, 2) + pow(0.5 * b, 2));
 }
+
+double singleCabelRod::heightOfZoneProtectionZoneA(double h) {
+    return 0.85 * h;
+}
+
+double singleCabelRod::radiusOfZoneProtectionZoneA(double h) {
+    return (1.35 - 0.0025 * h) * h;
+}
+
+double singleCabelRod::radiuseHeightProtectionOnHeightZoneA(double h, double hx) {
+    return (1.35 - 0.0025 * h) * (h - hx * 0.85);
+}
+
+double singleCabelRod::heightOfZoneProtectionZoneB(double h) {
+    return 0.92 * h;
+}
+
+double singleCabelRod::radiusOfZoneProtectionZoneB(double h) {
+    return 1.7 * h;
+}
+
+double singleCabelRod::radiuseHeightProtectionOnHeightZoneB(double h, double hx) {
+    return 1.7 * (h - hx * 0.92);
+}
