@@ -14,6 +14,35 @@ public:
     // [L] радиус зоны защиты
     double radiusZoneProtection(double L);
 
+    // [H0] вычисление высоты зоны защиты для А
+    double heightOfZoneProtectionLEZoneA(double h);
+    // [R0] вычисление радиуса зоны защиты на поверхности земли для А
+    double radiusOfZoneProtectionLEZoneA(double h);
+    // [Rx] вычисление радиуса зоны защиты на высоте hx для А
+    double radiuseHeightProtectionOnHeightLEZoneA(double h, double hx);
+
+    // [H0] вычисление высоты зоны защиты для А
+    double heightOfZoneProtectionLLZoneA(double h, double l);
+    // [R0] вычисление радиуса зоны защиты на поверхности земли для А
+    double radiusOfZoneProtectionLLZoneA(double h);
+    // [Rx] вычисление радиуса зоны защиты на высоте hx для А
+    double radiuseHeightProtectionOnHeightLLZoneA(double h, double hc, double hx);
+
+    // [H0] вычисление высоты зоны защиты для B
+    double heightOfZoneProtectionLEZoneB(double h);
+    // [R0] вычисление радиуса зоны защиты на поверхности земли для B
+    double radiusOfZoneProtectionLEZoneB(double h);
+    // [Rx] вычисление радиуса зоны защиты на высоте hx для B
+    double radiuseHeightProtectionOnHeightLEZoneB(double h, double hx);
+
+    // [H0] вычисление высоты зоны защиты для B
+    double heightOfZoneProtectionLLZoneB(double h, double l);
+    // [R0] вычисление радиуса зоны защиты на поверхности земли для B
+    double radiusOfZoneProtectionLLZoneB(double h);
+    // [Rx] вычисление радиуса зоны защиты на высоте hx для B
+    double radiuseHeightProtectionOnHeightLLZoneB(double h, double r0, double hc, double hx);
+
+
     /*
      * Входные параметры для одиночного молниеотвода
      *
