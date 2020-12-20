@@ -83,5 +83,5 @@ double doublelightningrod::radiusOfZoneProtectionLLZoneB(double h){
 };
 
 double doublelightningrod::radiuseHeightProtectionOnHeightLLZoneB(double h, double r0, double hc, double hx){
-    return r0 * (hc - hx * hc);
+    return r0 * (hc - hx / hc);
 };

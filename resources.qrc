@@ -57,6 +57,7 @@
         <file>image/dlr/ZoneA/LLessAndEqh/hc.png</file>
         <file>image/dlr/ZoneA/LLessAndEqh/Rc.png</file>
         <file>image/dlr/ZoneA/LLessAndEqh/Rcx.png</file>
+        <file>image/dlr/ZoneA/LLessAndEqh/Rcx_fix.png</file>
     </qresource>
     <qresource prefix="/dlr/A/hLessLLess6h">
         <file>image/dlr/ZoneA/hLessLLess6h/hc.png</file>
@@ -72,5 +73,22 @@
         <file>image/dlr/ZoneB/hLessLLess6h/hc.png</file>
         <file>image/dlr/ZoneB/hLessLLess6h/Rc.png</file>
         <file>image/dlr/ZoneB/hLessLLess6h/Rcx.png</file>
+        <file>image/dlr/ZoneB/hLessLLess6h/Rcx_fix.png</file>
+    </qresource>
+    <qresource prefix="/slc/A">
+        <file>image/slc/ZoneA/h0.png</file>
+        <file>image/slc/ZoneA/R0.png</file>
+        <file>image/slc/ZoneA/Rx.png</file>
+    </qresource>
+    <qresource prefix="/slc/B">
+        <file>image/slc/ZoneB/h0.png</file>
+        <file>image/slc/ZoneB/R0.png</file>
+        <file>image/slc/ZoneB/Rx.png</file>
+    </qresource>
+    <qresource prefix="/dlc/A">
+        <file>image/dlc/ZoneA/h.png</file>
+    </qresource>
+    <qresource prefix="/dlc/B">
+        <file>image/dlc/ZoneB/h.png</file>
     </qresource>
 </RCC>

@@ -15,6 +15,9 @@
 #include "zonetypemodel.h"
 #include "locationmodel.h"
 #include "singlelightningrod.h"
+#include "doublelightningrod.h"
+#include "doublecabelrod.h"
+#include "singlecabelrod.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -415,9 +418,19 @@ void MainWindow::whichLightningRodSelected() {
                 ui->zoneStackedWidgetDLR->setCurrentIndex(1);
             }
 
+            calcDLR();
+
         }
         if (ui->cableRadioBtn->isChecked()) {
             ui->lightningRodTypeStackedWidget->setCurrentIndex(4);
+
+            if (zoneType == ZoneTypeModel::A) {
+                ui->zoneStackedWidgetDLC->setCurrentIndex(0);
+            } else {
+                ui->zoneStackedWidgetDLC->setCurrentIndex(1);
+            }
+
+            calcDLC();
         }
     }
 
@@ -428,7 +441,7 @@ void MainWindow::whichLightningRodSelected() {
 void MainWindow::calcSLR() {
 
     double L = ui->objectLengthDoubleSpinBox->value();
-    double l = ui->distanceFromWallToLightningDoubleSpinBox->value();
+    double l = ui->distanceFromWallToLightningDoubleSpinBoxSLR->value();
     double hx = ui->objectHeightDoubleSpinBox->value();
     double S = ui->objectWidthDoubleSpinBox->value();
     double Rx = sqrt(pow(L / 2, 2) + pow(S + l, 2));;
@@ -457,35 +470,162 @@ void MainWindow::calcSLR() {
     }
 }
 
+
+void MainWindow::on_distanceFromWallToLightningDoubleSpinBoxSLR_valueChanged(double arg1)
+{
+    whichLightningRodSelected();
+}
+
 void MainWindow::calcSLC() {
 
     double L = ui->objectLengthDoubleSpinBox->value();
-    double l = ui->distanceFromWallToLightningDoubleSpinBox->value();
+    double l = ui->distanceFromWallToLightningDoubleSpinBoxSLC->value();
     double hx = ui->objectHeightDoubleSpinBox->value();
     double S = ui->objectWidthDoubleSpinBox->value();
-    double Rx = sqrt(pow(L / 2, 2) + pow(S + l, 2));;
-    singleLightningRod slr;
+    double Rx = sqrt(pow(L / 2, 2) + pow(S + l, 2));
+    singleCabelRod scr;
+
 
     double h, h0, R0;
 
     if (zoneType == ZoneTypeModel::A) {
-        h = slr.fullHeightA(hx, Rx);
+        h = scr.fullHeightA(hx, Rx);
+        R0 = scr.radiusOfZoneProtectionZoneA(h);
+        h0 = scr.heightOfZoneProtectionZoneA(h);
 
         ui->slchLabelA->setText(QString::number(h));
         ui->slcRxLabelA->setText(QString::number(Rx));
+        ui->slcR0LabelA->setText(QString::number(R0));
+        ui->slch0LabelA->setText(QString::number(h0));
+
+
     } else {
-        h = slr.fullHeightB(hx, Rx);
-
-        QString str1 = ui->slcRxLabelB->text().split("=")[0].append("=").append(QString::number(h));
-        QString str2 = ui->slcRxLabelB->text().split("=")[0];
-        QString str3 = ui->slcRxLabelB->text();
-        QLabel *dffd = new QLabel();
-
-
+        h = scr.fullHeightB(hx, Rx);
+        R0 = scr.radiusOfZoneProtectionZoneB(h);
+        h0 = scr.heightOfZoneProtectionZoneB(h);
 
         ui->slchLabelB->setText(QString::number(h));
         ui->slcRxLabelB->setText(QString::number(Rx));
+        ui->slcR0LabelB->setText(QString::number(R0));
+        ui->slch0LabelB->setText(QString::number(h0));
     }
+}
+
+void MainWindow::on_distanceFromWallToLightningDoubleSpinBoxSLC_valueChanged(double arg1)
+{
+    whichLightningRodSelected();
+}
+
+
+void MainWindow::calcDLR() {
+
+    doublelightningrod dlr;
+    double hc, L, h, Rc, Rcx;
+    double objectHeight = ui->objectHeightDoubleSpinBox->value();
+
+
+
+    if (zoneType == ZoneTypeModel::A) {
+        L = ui->distanceBetweenRodsDoubleSpinBoxDLR->value();
+        hc = ui->distanceFromWallToRodDoubleSpinBoxDLR->value();
+        h = dlr.fullHeightA(hc, L);
+
+        if (L <= h) {
+            ui->lConditionStackedDLR_A->setCurrentIndex(0);
+
+            Rc = dlr.radiusOfZoneProtectionLEZoneA(h);
+            Rcx = dlr.radiuseHeightProtectionOnHeightLEZoneA(h, objectHeight);
+
+            ui->dlr_h_A_LE->setText(QString::number(h));
+            ui->dlr_Rc_A_LE->setText(QString::number(Rc));
+            ui->dlr_Rcx_A_LE->setText(QString::number(Rcx));
+        } else if (h < L && L < 6*h) {
+            ui->lConditionStackedDLR_A->setCurrentIndex(1);
+
+            Rc = dlr.radiusOfZoneProtectionLLZoneA(h);
+            Rcx = dlr.radiuseHeightProtectionOnHeightLLZoneA(h, hc, objectHeight);
+
+            ui->dlr_h_A_LL->setText(QString::number(h));
+            ui->dlr_Rc_A_LL->setText(QString::number(Rc));
+            ui->dlr_Rcx_A_LL->setText(QString::number(Rcx));
+        } else {
+
+        }
+//        double dlrCondition = dlr.fullHeightA()
+    } else {
+        L = ui->distanceBetweenRodsDoubleSpinBoxDLR->value();
+        hc = ui->distanceFromWallToRodDoubleSpinBoxDLR->value();
+        h = dlr.fullHeightB(hc, L);
+
+        if (L <= h) {
+            ui->lConditionStackedDLR_B->setCurrentIndex(0);
+
+            Rc = dlr.radiusOfZoneProtectionLEZoneB(h);
+            Rcx = dlr.radiuseHeightProtectionOnHeightLEZoneB(h, objectHeight);
+
+            ui->dlr_h_B_LE->setText(QString::number(h));
+            ui->dlr_Rc_B_LE->setText(QString::number(Rc));
+            ui->dlr_Rcx_B_LE->setText(QString::number(Rcx));
+        } else if (h < L && L < 6*h) {
+            ui->lConditionStackedDLR_B->setCurrentIndex(1);
+
+            Rc = dlr.radiusOfZoneProtectionLLZoneB(h);
+            Rcx = dlr.radiuseHeightProtectionOnHeightLLZoneB(h, Rc, hc, objectHeight);
+
+            ui->dlr_h_B_LL->setText(QString::number(h));
+            ui->dlr_Rc_B_LL->setText(QString::number(Rc));
+            ui->dlr_Rcx_B_LL->setText(QString::number(Rcx));
+        } else {
+
+        }
+
+    }
+}
+
+
+void MainWindow::on_distanceBetweenRodsDoubleSpinBoxDLR_valueChanged(double arg1)
+{
+    whichLightningRodSelected();
+}
+
+
+void MainWindow::on_distanceFromWallToRodDoubleSpinBoxDLR_valueChanged(double arg1)
+{
+    whichLightningRodSelected();
+}
+
+void MainWindow::calcDLC() {
+    doubleCabelRod dcr;
+    double objectHeight = ui->objectHeightDoubleSpinBox->value();
+    double L = ui->distanceBetweenCablesDoubleSpinBoxDLC->value();
+    double h;
+
+    if (zoneType == ZoneTypeModel::A) {
+        h = dcr.fullHeightA(objectHeight, L);
+
+        if (L <= h) {
+            ui->dlc_h_A_LE->setText(QString::number(h));
+        } else if (h < L && L < 6*h) {
+            ui->dlc_h_A_LL->setText(QString::number(h));
+        } else {
+
+        }
+    } else {
+        h = dcr.fullHeightB(objectHeight, L);
+
+        if (L <= h) {
+            ui->dlc_h_B_LE->setText(QString::number(h));
+        } else if (h < L && L < 6*h) {
+            ui->dlc_h_B_LL->setText(QString::number(h));
+        } else {
+
+        }
+    }
+}
+
+void MainWindow::on_distanceBetweenCablesDoubleSpinBoxDLC_valueChanged(double arg1)
+{
+    whichLightningRodSelected();
 }
 
 
@@ -582,3 +722,4 @@ void MainWindow::on_lightningIntensitySpinBox_valueChanged(int arg1)
 
         calcExpectedStrikesNumber();
 }
+

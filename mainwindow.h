@@ -20,6 +20,10 @@ public:
 
     void calcSLC();
 
+    void calcDLR();
+
+    void calcDLC();
+
     void calcZoneType();
 
     void changeGuiWhileCalcZoneType();
@@ -60,6 +64,16 @@ private slots:
     void on_distanceFromWallToLightningDoubleSpinBox_valueChanged(double arg1);
 
     void on_lightningIntensitySpinBox_valueChanged(int arg1);
+
+    void on_distanceBetweenRodsDoubleSpinBoxDLR_valueChanged(double arg1);
+
+    void on_distanceFromWallToRodDoubleSpinBoxDLR_valueChanged(double arg1);
+
+    void on_distanceBetweenCablesDoubleSpinBoxDLC_valueChanged(double arg1);
+
+    void on_distanceFromWallToLightningDoubleSpinBoxSLR_valueChanged(double arg1);
+
+    void on_distanceFromWallToLightningDoubleSpinBoxSLC_valueChanged(double arg1);
 
 private:
     Ui::MainWindow *ui;
