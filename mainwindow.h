@@ -33,9 +33,6 @@ public:
     void whichLightningRodSelected();
 
 private slots:
-    void on_nextPageBtn_clicked();
-
-    void on_previousPageBtn_clicked();
 
     void on_LightningIntensityMap_clicked();
 
