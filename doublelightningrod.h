@@ -28,11 +28,11 @@ public:
     // [Rx] вычисление радиуса зоны защиты на высоте hx для А
     double radiuseHeightProtectionOnHeightLLZoneA(double h, double hc, double hx);
 
-    // [H0] вычисление высоты зоны защиты для B
+    // [Hc] вычисление высоты зоны защиты для B
     double heightOfZoneProtectionLEZoneB(double h);
-    // [R0] вычисление радиуса зоны защиты на поверхности земли для B
+    // [Rc] вычисление радиуса зоны защиты на поверхности земли для B
     double radiusOfZoneProtectionLEZoneB(double h);
-    // [Rx] вычисление радиуса зоны защиты на высоте hx для B
+    // [Rcx] вычисление радиуса зоны защиты на высоте hx для B
     double radiuseHeightProtectionOnHeightLEZoneB(double h, double hx);
 
     // [H0] вычисление высоты зоны защиты для B

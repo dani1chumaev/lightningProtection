@@ -26,16 +26,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 //    ui->LightningIntensityTable->setEnabled(false);
-    ui->LightningIntensityTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//    ui->LightningIntensityTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
 //    ui->scrollArea->setWidgetResizable(true);
 
     QPixmap *ligtningFrequencyMap = new QPixmap(":/image/image/lightningFrequency.jpg");
 //    ui->ligtningFrequencyImage->setPixmap(*ligtningFrequencyMap);
-    ui->ligtningFrequencyImage->setPixmap(ligtningFrequencyMap->scaled(1089, 601, Qt::KeepAspectRatio));
+//    ui->ligtningFrequencyImage->setPixmap(ligtningFrequencyMap->scaled(1089, 601, Qt::KeepAspectRatio));
 
-    ui->ligtningFrequencyImage->setScaledContents(true);
+//    ui->ligtningFrequencyImage->setScaledContents(true);
 
 
 
@@ -50,6 +50,10 @@ MainWindow::MainWindow(QWidget *parent)
     //Initial param
     ui->PUABrowser->setHtml(Utils::readFile(":/html/html/P-1.html"));
     ui->refractorinessBrowser->setHtml(Utils::readFile(":/html/html/refractoriness-1.html"));
+
+    ui->lightningRodTypeStackedWidget->setCurrentIndex(0);
+    ui->label_22->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: orange;padding: 0px 0px 0px 0px;}");
+
 
 //    ui->lPCategoryAndTypeParamTable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -90,17 +94,6 @@ LocationModel::Location location;
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-void MainWindow::on_nextPageBtn_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex()+1);
-}
-
-void MainWindow::on_previousPageBtn_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(ui->stackedWidget->currentIndex()-1);
 }
 
 void MainWindow::on_LightningIntensityMap_clicked()
@@ -454,19 +447,19 @@ void MainWindow::calcSLR() {
         h0 = slr.protectionZoneHeightA(h);
         R0 = slr.protectionZoneBoundaryA(h);
 
-        ui->slrhLabelA->setText(QString::number(h));
-        ui->slrh0LabelA->setText(QString::number(h0));
-        ui->slrR0LabelA->setText(QString::number(R0));
-        ui->slrRxLabelA->setText(QString::number(Rx));
+        ui->slrhLabelA->setText(QString::number(h) + " м");
+        ui->slrh0LabelA->setText(QString::number(h0)+ " м");
+        ui->slrR0LabelA->setText(QString::number(R0)+ " м");
+        ui->slrRxLabelA->setText(QString::number(Rx)+ " м");
     } else {
         h = slr.fullHeightB(hx, Rx);
         h0 = slr.protectionZoneHeightB(h);
         R0 = slr.protectionZoneBoundaryB(h);
 
-        ui->slrhLabelB->setText(QString::number(h));
-        ui->slrh0LabelB->setText(QString::number(h0));
-        ui->slrR0LabelB->setText(QString::number(R0));
-        ui->slrRxLabelB->setText(QString::number(Rx));
+        ui->slrhLabelB->setText(QString::number(h)+ " м");
+        ui->slrh0LabelB->setText(QString::number(h0)+ " м");
+        ui->slrR0LabelB->setText(QString::number(R0)+ " м");
+        ui->slrRxLabelB->setText(QString::number(Rx)+ " м");
     }
 }
 
@@ -493,10 +486,10 @@ void MainWindow::calcSLC() {
         R0 = scr.radiusOfZoneProtectionZoneA(h);
         h0 = scr.heightOfZoneProtectionZoneA(h);
 
-        ui->slchLabelA->setText(QString::number(h));
-        ui->slcRxLabelA->setText(QString::number(Rx));
-        ui->slcR0LabelA->setText(QString::number(R0));
-        ui->slch0LabelA->setText(QString::number(h0));
+        ui->slchLabelA->setText(QString::number(h)+ " м");
+        ui->slcRxLabelA->setText(QString::number(Rx)+ " м");
+        ui->slcR0LabelA->setText(QString::number(R0)+ " м");
+        ui->slch0LabelA->setText(QString::number(h0)+ " м");
 
 
     } else {
@@ -504,10 +497,10 @@ void MainWindow::calcSLC() {
         R0 = scr.radiusOfZoneProtectionZoneB(h);
         h0 = scr.heightOfZoneProtectionZoneB(h);
 
-        ui->slchLabelB->setText(QString::number(h));
-        ui->slcRxLabelB->setText(QString::number(Rx));
-        ui->slcR0LabelB->setText(QString::number(R0));
-        ui->slch0LabelB->setText(QString::number(h0));
+        ui->slchLabelB->setText(QString::number(h)+ " м");
+        ui->slcRxLabelB->setText(QString::number(Rx)+ " м");
+        ui->slcR0LabelB->setText(QString::number(R0)+ " м");
+        ui->slch0LabelB->setText(QString::number(h0)+ " м");
     }
 }
 
@@ -536,22 +529,21 @@ void MainWindow::calcDLR() {
             Rc = dlr.radiusOfZoneProtectionLEZoneA(h);
             Rcx = dlr.radiuseHeightProtectionOnHeightLEZoneA(h, objectHeight);
 
-            ui->dlr_h_A_LE->setText(QString::number(h));
-            ui->dlr_Rc_A_LE->setText(QString::number(Rc));
-            ui->dlr_Rcx_A_LE->setText(QString::number(Rcx));
+            ui->dlr_h_A_LE->setText(QString::number(h)+ " м");
+            ui->dlr_Rc_A_LE->setText(QString::number(Rc)+ " м");
+            ui->dlr_Rcx_A_LE->setText(QString::number(Rcx)+ " м");
         } else if (h < L && L < 6*h) {
             ui->lConditionStackedDLR_A->setCurrentIndex(1);
 
             Rc = dlr.radiusOfZoneProtectionLLZoneA(h);
             Rcx = dlr.radiuseHeightProtectionOnHeightLLZoneA(h, hc, objectHeight);
 
-            ui->dlr_h_A_LL->setText(QString::number(h));
-            ui->dlr_Rc_A_LL->setText(QString::number(Rc));
-            ui->dlr_Rcx_A_LL->setText(QString::number(Rcx));
+            ui->dlr_h_A_LL->setText(QString::number(h)+ " м");
+            ui->dlr_Rc_A_LL->setText(QString::number(Rc)+ " м");
+            ui->dlr_Rcx_A_LL->setText(QString::number(Rcx)+ " м");
         } else {
-
+            ui->lConditionStackedDLR_A->setCurrentIndex(2);
         }
-//        double dlrCondition = dlr.fullHeightA()
     } else {
         L = ui->distanceBetweenRodsDoubleSpinBoxDLR->value();
         hc = ui->distanceFromWallToRodDoubleSpinBoxDLR->value();
@@ -563,20 +555,20 @@ void MainWindow::calcDLR() {
             Rc = dlr.radiusOfZoneProtectionLEZoneB(h);
             Rcx = dlr.radiuseHeightProtectionOnHeightLEZoneB(h, objectHeight);
 
-            ui->dlr_h_B_LE->setText(QString::number(h));
-            ui->dlr_Rc_B_LE->setText(QString::number(Rc));
-            ui->dlr_Rcx_B_LE->setText(QString::number(Rcx));
+            ui->dlr_h_B_LE->setText(QString::number(h)+ " м");
+            ui->dlr_Rc_B_LE->setText(QString::number(Rc)+ " м");
+            ui->dlr_Rcx_B_LE->setText(QString::number(Rcx)+ " м");
         } else if (h < L && L < 6*h) {
             ui->lConditionStackedDLR_B->setCurrentIndex(1);
 
             Rc = dlr.radiusOfZoneProtectionLLZoneB(h);
             Rcx = dlr.radiuseHeightProtectionOnHeightLLZoneB(h, Rc, hc, objectHeight);
 
-            ui->dlr_h_B_LL->setText(QString::number(h));
-            ui->dlr_Rc_B_LL->setText(QString::number(Rc));
-            ui->dlr_Rcx_B_LL->setText(QString::number(Rcx));
+            ui->dlr_h_B_LL->setText(QString::number(h)+ " м");
+            ui->dlr_Rc_B_LL->setText(QString::number(Rc)+ " м");
+            ui->dlr_Rcx_B_LL->setText(QString::number(Rcx)+ " м");
         } else {
-
+            ui->lConditionStackedDLR_B->setCurrentIndex(2);
         }
 
     }
@@ -601,24 +593,33 @@ void MainWindow::calcDLC() {
     double h;
 
     if (zoneType == ZoneTypeModel::A) {
+
         h = dcr.fullHeightA(objectHeight, L);
 
         if (L <= h) {
-            ui->dlc_h_A_LE->setText(QString::number(h));
-        } else if (h < L && L < 6*h) {
-            ui->dlc_h_A_LL->setText(QString::number(h));
-        } else {
+            ui->lConditionStackedDLC_A->setCurrentIndex(0);
 
+            ui->dlc_h_A_LE->setText(QString::number(h)+ " м");
+        } else if (h < L && L < 6*h) {
+            ui->lConditionStackedDLC_A->setCurrentIndex(1);
+
+            ui->dlc_h_A_LL->setText(QString::number(h)+ " м");
+        } else {
+            ui->lConditionStackedDLC_A->setCurrentIndex(2);
         }
     } else {
         h = dcr.fullHeightB(objectHeight, L);
 
         if (L <= h) {
-            ui->dlc_h_B_LE->setText(QString::number(h));
-        } else if (h < L && L < 6*h) {
-            ui->dlc_h_B_LL->setText(QString::number(h));
-        } else {
+            ui->lConditionStackedDLC_B->setCurrentIndex(0);
 
+            ui->dlc_h_B_LE->setText(QString::number(h)+ " м");
+        } else if (h < L && L < 6*h) {
+            ui->lConditionStackedDLC_B->setCurrentIndex(1);
+
+            ui->dlc_h_B_LL->setText(QString::number(h)+ " м");
+        } else {
+            ui->lConditionStackedDLC_B->setCurrentIndex(2);
         }
     }
 }
