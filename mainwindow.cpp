@@ -444,7 +444,7 @@ void MainWindow::calcSLR() {
     double l = ui->distanceFromWallToLightningDoubleSpinBoxSLR->value();
     double hx = ui->objectHeightDoubleSpinBox->value();
     double S = ui->objectWidthDoubleSpinBox->value();
-    double Rx = sqrt(pow(L / 2, 2) + pow(S + l, 2));;
+    double Rx = sqrt(pow(L / 2, 2) + pow(S + l, 2));
     singleLightningRod slr;
 
     double h, h0, R0;
