@@ -603,7 +603,7 @@ void MainWindow::calcDLC() {
         } else if (h < L && L < 6*h) {
             ui->lConditionStackedDLC_A->setCurrentIndex(1);
 
-            ui->dlc_h_A_LL->setText(QString::number(h)+ " м");
+//            ui->dlc_h_A_LL->setText(QString::number(h)+ " м");
         } else {
             ui->lConditionStackedDLC_A->setCurrentIndex(2);
         }

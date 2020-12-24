@@ -107,4 +107,22 @@
     <qresource prefix="/dlr">
         <file>image/dlr/dlrImage.jpg</file>
     </qresource>
+    <qresource prefix="/dlc/A/LLessAndEqh">
+        <file>image/dlc/ZoneA/LLessAndEqh/hc.png</file>
+        <file>image/dlc/ZoneA/LLessAndEqh/Rc.png</file>
+        <file>image/dlc/ZoneA/LLessAndEqh/Rcx.png</file>
+    </qresource>
+    <qresource prefix="/dlc/A/hLessLLess2h">
+        <file>image/dlc/ZoneA/hLessLLess2h/Rcx.png</file>
+    </qresource>
+    <qresource prefix="/dlc/A/h2LessLLess4h">
+        <file>image/dlc/ZoneA/h2LessLLess4h/Rc.png</file>
+        <file>image/dlc/ZoneA/h2LessLLess4h/Rcx.png</file>
+    </qresource>
+    <qresource prefix="/dlc/B/LLessAndEqh">
+        <file>image/dlc/ZoneB/LLessAndEqh/Rc.png</file>
+    </qresource>
+    <qresource prefix="/dlc/B/hLessLLess6h">
+        <file>image/dlc/ZoneB/hLessLLess6h/Rcx.png</file>
+    </qresource>
 </RCC>
