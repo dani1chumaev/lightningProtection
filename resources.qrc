@@ -90,9 +90,11 @@
     </qresource>
     <qresource prefix="/dlc/A">
         <file>image/dlc/ZoneA/h.png</file>
+        <file>image/dlc/ZoneA/1.1_h.png</file>
     </qresource>
     <qresource prefix="/dlc/B">
         <file>image/dlc/ZoneB/h.png</file>
+        <file>image/dlc/ZoneB/1.1_h.png</file>
     </qresource>
     <qresource prefix="/expectedLightningStrikes">
         <file>image/expectedLightningStrikes/otherBuildings.png</file>
@@ -121,8 +123,13 @@
     </qresource>
     <qresource prefix="/dlc/B/LLessAndEqh">
         <file>image/dlc/ZoneB/LLessAndEqh/Rc.png</file>
+        <file>image/dlc/ZoneB/LLessAndEqh/Rx.png</file>
+        <file>image/dlc/ZoneB/LLessAndEqh/1.1_Rcx.png</file>
     </qresource>
     <qresource prefix="/dlc/B/hLessLLess6h">
         <file>image/dlc/ZoneB/hLessLLess6h/Rcx.png</file>
+    </qresource>
+    <qresource prefix="/dlc">
+        <file>image/dlc/dlcImage.png</file>
     </qresource>
 </RCC>

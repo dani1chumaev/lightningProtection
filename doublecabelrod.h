@@ -53,7 +53,7 @@ public:
     // [Rx] высота проседа для A при 2h < L <= 4h
     double radiusXWithStreak2LL4ZoneA(double h0, double L, double hx, double hc);
     // [Rcx] высота проседа для A при 2h < L <= 4h
-    double radiusCX2LL4ZoneA(double rc, double r0, double hc, double hx);
+    double radiusCX2LL4ZoneA(double rc, double hc, double hx);
     // [Rc] вычисление радиуса зоны защиты на поверхности земли для А при 2h < L <= 4h
     double radiusC2LL4ZoneA(double r0, double h, double l);
 

@@ -72,6 +72,8 @@ private slots:
 
     void on_distanceFromWallToLightningDoubleSpinBoxSLC_valueChanged(double arg1);
 
+    void on_middleOfDistanceBetweenLR_DLC_valueChanged(double arg1);
+
 private:
     Ui::MainWindow *ui;
 };

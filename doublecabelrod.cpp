@@ -23,8 +23,8 @@ double doubleCabelRod::fullHeightA(double hc, double L) {
  * @param L
  * @return высота молниеотвода зоны защиты B
  */
-double doubleCabelRod::fullHeightB(double hx, double L) {
-    return (hx  + 0.12 * L) / 1.04;
+double doubleCabelRod::fullHeightB(double hc, double L) {
+    return (hc  + 0.12 * L) / 1.04;
 }
 
 // [h0] высота зоны защиты для A
@@ -105,7 +105,7 @@ double doubleCabelRod::radiusXWithStreak2LL4ZoneA(double h0, double L, double hx
     return L/2.0 * (h0 - hx)/(h0 - hc);
 };
 // [Rcx] высота проседа для A при 2h < L <= 4h
-double doubleCabelRod::radiusCX2LL4ZoneA(double rc, double r0, double hc, double hx){
+double doubleCabelRod::radiusCX2LL4ZoneA(double rc, double hc, double hx){
     return rc * (hc - hx)/hc;
 };
 // [Rc] вычисление радиуса зоны защиты на поверхности земли для А при 2h < L <= 4h

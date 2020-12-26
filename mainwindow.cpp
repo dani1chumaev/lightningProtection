@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 //    ui->scrollArea->setWidgetResizable(true);
 
-    QPixmap *ligtningFrequencyMap = new QPixmap(":/image/image/lightningFrequency.jpg");
+
 //    ui->ligtningFrequencyImage->setPixmap(*ligtningFrequencyMap);
 //    ui->ligtningFrequencyImage->setPixmap(ligtningFrequencyMap->scaled(1089, 601, Qt::KeepAspectRatio));
 
@@ -267,8 +267,9 @@ void MainWindow::changeGuiWhileCalcZoneType() {
 
 void MainWindow::calcZoneType() {
 
-    if (lightningIntensity == 0 || N == 0) {
+    if (lightningIntensity == 0 || N == 0 ) {
         zoneType = ZoneTypeModel::NONE;
+        whichLightningRodSelected();
         return;
     }
 
@@ -590,34 +591,68 @@ void MainWindow::calcDLC() {
     doubleCabelRod dcr;
     double objectHeight = ui->objectHeightDoubleSpinBox->value();
     double L = ui->distanceBetweenCablesDoubleSpinBoxDLC->value();
-    double h;
+    double h, Rc, Rcx, R0;
+    double hc = ui->middleOfDistanceBetweenLR_DLC->value();
+
 
     if (zoneType == ZoneTypeModel::A) {
 
-        h = dcr.fullHeightA(objectHeight, L);
+        h = dcr.fullHeightA(hc, L);
+        R0 = dcr.radiusZoneProtectionZoneA(h);
 
         if (L <= h) {
             ui->lConditionStackedDLC_A->setCurrentIndex(0);
 
+            Rc = dcr.radiusCLEZoneA(h);
+            Rcx = dcr.radiusCXLEZoneA(h, objectHeight);
+
             ui->dlc_h_A_LE->setText(QString::number(h)+ " м");
-        } else if (h < L && L < 6*h) {
+            ui->dlc_Rc_A_LE->setText(QString::number(Rc)+ " м");
+            ui->dlc_Rcx_A_LE->setText(QString::number(Rcx)+ " м");
+        } else if (h < L && L <= 2*h) {
             ui->lConditionStackedDLC_A->setCurrentIndex(1);
 
-//            ui->dlc_h_A_LL->setText(QString::number(h)+ " м");
-        } else {
+            Rc = dcr.radiusC1LL2ZoneA(h);
+            Rcx = dcr.radiusCX1LL2ZoneA(R0 ,hc, objectHeight);
+
+            ui->dlc_h_A_hLL2h->setText(QString::number(h)+ " м");
+            ui->dlc_Rc_A_hLL2h->setText(QString::number(Rc)+ " м");
+            ui->dlc_Rcx_A_hLL2h->setText(QString::number(Rcx)+ " м");
+        } else if (2*h < L && L <= 4*h) {
             ui->lConditionStackedDLC_A->setCurrentIndex(2);
+
+            Rc = dcr.radiusC2LL4ZoneA(R0, h, L);
+            Rcx = dcr.radiusCX2LL4ZoneA(Rc ,hc, objectHeight);
+
+            ui->dlc_h_A_2hLL4h->setText(QString::number(h)+ " м");
+            ui->dlc_Rc_A_2hLL4h->setText(QString::number(Rc)+ " м");
+            ui->dlc_Rcx_A_2hLL4h->setText(QString::number(Rcx)+ " м");
+        } else {
+            ui->lConditionStackedDLC_A->setCurrentIndex(3);
+
         }
     } else {
-        h = dcr.fullHeightB(objectHeight, L);
+        h = dcr.fullHeightB(hc, L);
+        R0 = dcr.radiusZoneProtectionZoneB(h);
 
         if (L <= h) {
             ui->lConditionStackedDLC_B->setCurrentIndex(0);
 
+            Rc = dcr.radiusCLEZoneB(h);
+            Rcx = dcr.radiusCXLEZoneB(h, objectHeight);
+
             ui->dlc_h_B_LE->setText(QString::number(h)+ " м");
+            ui->dlc_Rc_B_LE->setText(QString::number(Rc)+ " м");
+            ui->dlc_Rcx_B_LE->setText(QString::number(Rcx)+ " м");
         } else if (h < L && L < 6*h) {
             ui->lConditionStackedDLC_B->setCurrentIndex(1);
 
+            Rc = dcr.radiusC1LL6ZoneB(h);
+            Rcx = dcr.radiusCX1LL6ZoneB(R0, hc, objectHeight);
+
             ui->dlc_h_B_LL->setText(QString::number(h)+ " м");
+            ui->dlc_Rc_B_LL->setText(QString::number(Rc)+ " м");
+            ui->dlc_Rcx_B_LL->setText(QString::number(Rcx)+ " м");
         } else {
             ui->lConditionStackedDLC_B->setCurrentIndex(2);
         }
@@ -625,6 +660,11 @@ void MainWindow::calcDLC() {
 }
 
 void MainWindow::on_distanceBetweenCablesDoubleSpinBoxDLC_valueChanged(double arg1)
+{
+    whichLightningRodSelected();
+}
+
+void MainWindow::on_middleOfDistanceBetweenLR_DLC_valueChanged(double arg1)
 {
     whichLightningRodSelected();
 }
@@ -640,12 +680,16 @@ void MainWindow::calcExpectedStrikesNumber() {
     if ((L == 0 || h == 0 || S == 0) && buildingType != BuildingTypeModel::TallTower) {
         expectedStrikesNumberResult->setText("Ошибка");
         expectedStrikesNumberResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
+        N = 0;
+        calcZoneType();
         return;
     }
 
     if (buildingType == BuildingTypeModel::TallTower && h == 0) {
         expectedStrikesNumberResult->setText("Ошибка");
         expectedStrikesNumberResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
+        N = 0;
+        calcZoneType();
         return;
     }
 
@@ -716,11 +760,13 @@ void MainWindow::on_lightningIntensitySpinBox_valueChanged(int arg1)
             lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: green;padding: 0px 0px 0px 0px;}");
         } else {
             lightningStrikesAverageResult->setText("Ошибка");
-            n = NULL;
-            lightningIntensity = NULL;
+            n = 0;
+            lightningIntensity = 0;
             lightningStrikesAverageResult->setStyleSheet("QLabel {border: 1px solid black;border-radius: 15px;background-color: red;padding: 0px 0px 0px 0px;}");
         }
 
         calcExpectedStrikesNumber();
 }
+
+
 
